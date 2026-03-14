@@ -39,16 +39,6 @@ const fenceTypes = [
   },
 ];
 
-const specs = [
-  "Structural steel with galvanized zinc coating — rust-resistant",
-  "Withstands winds of 70+ MPH (ASCE 7-10 certified up to 112 MPH)",
-  "Won't warp, crack, twist, rot, or lean",
-  "344 MPa (50,000 psi) yield strength — ASTM A-653",
-  "Lifetime Limited Warranty from Master Halco (50+ years in the fence industry)",
-  "Made from recycled steel — environmentally friendly",
-  "No termite damage. No rot. No chemical leaching.",
-];
-
 export default function FenceTypesSection() {
   return (
     <section id="fence-types" className="section-padding bg-secondary">
