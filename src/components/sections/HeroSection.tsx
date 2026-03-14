@@ -1,14 +1,24 @@
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import heroImg from "@/assets/hero-install.jpg";
 
 const pillars = [
-  { word: "Faster.", proof: "Installed in hours — not days." },
-  { word: "Cleaner.", proof: "No concrete. No torn-up yards." },
-  { word: "Stronger.", proof: "4× the hold of a traditional post." },
+  { word: "Faster", proof: "Installed in hours — not days." },
+  { word: "Cleaner", proof: "No concrete. No torn-up yards." },
+  { word: "Stronger", proof: "4× the hold of a traditional post." },
 ];
 
 export default function HeroSection() {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % pillars.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 z-0">
@@ -36,21 +46,52 @@ export default function HeroSection() {
           </h1>
         </motion.div>
 
-        <motion.p
+        {/* Rotating word + proof */}
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="text-lg md:text-xl text-primary-foreground/60 max-w-lg mb-14 leading-relaxed font-light"
+          className="mb-14 h-24 flex flex-col items-center justify-center"
         >
-          The SteelCore™ No-Dig Post System. 4× stronger than concrete.
-          Built for Kansas City weather.
-        </motion.p>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeIndex}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -16 }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="flex flex-col items-center"
+            >
+              <span className="text-3xl md:text-4xl font-bold text-accent tracking-tight">
+                {pillars[activeIndex].word}.
+              </span>
+              <span className="text-base md:text-lg text-primary-foreground/50 mt-2 font-light">
+                {pillars[activeIndex].proof}
+              </span>
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Dots indicator */}
+          <div className="flex gap-2 mt-5">
+            {pillars.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setActiveIndex(i)}
+                className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+                  i === activeIndex
+                    ? "bg-accent w-6"
+                    : "bg-primary-foreground/30"
+                }`}
+              />
+            ))}
+          </div>
+        </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col sm:flex-row items-center gap-4 mb-24"
+          className="flex flex-col sm:flex-row items-center gap-4"
         >
           <Link
             to="/contact"
@@ -65,37 +106,6 @@ export default function HeroSection() {
             See How It Works
           </a>
         </motion.div>
-
-        {/* Three-word story */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-12 md:gap-20">
-          {pillars.map((pillar, i) => (
-            <motion.div
-              key={pillar.word}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.8 + i * 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="text-center"
-            >
-              <span className="relative inline-block text-2xl md:text-3xl font-bold text-primary-foreground tracking-tight">
-                {pillar.word}
-                <motion.span
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: 1 }}
-                  transition={{ duration: 0.5, delay: 1.05 + i * 0.2, ease: [0.16, 1, 0.3, 1] }}
-                  className="absolute left-0 -bottom-1.5 w-full h-[2px] bg-accent origin-left rounded-full"
-                />
-              </span>
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: 1.2 + i * 0.2 }}
-                className="text-sm text-primary-foreground/40 mt-3 max-w-[180px] mx-auto font-light"
-              >
-                {pillar.proof}
-              </motion.p>
-            </motion.div>
-          ))}
-        </div>
       </div>
     </section>
   );
