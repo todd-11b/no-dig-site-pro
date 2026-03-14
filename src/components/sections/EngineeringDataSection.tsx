@@ -88,7 +88,7 @@ export default function EngineeringDataSection() {
                     whileInView={{ width: metric.traditional.width }}
                     viewport={{ once: true, margin: "-80px" }}
                     transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
-                    className="bg-primary-foreground/15 h-full rounded-full"
+                    className="bg-primary-foreground/60 h-full rounded-full"
                   />
                 </div>
                 <p className="text-xs text-primary-foreground/40 mt-2">{metric.traditional.note}</p>
