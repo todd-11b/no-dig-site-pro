@@ -73,6 +73,27 @@ export default function InstallComparisonSection() {
           </motion.div>
         </div>
 
+        {/* Video — No Yard Damage */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-24 lg:mb-32"
+        >
+          <div className="rounded-2xl overflow-hidden aspect-video">
+            <iframe
+              src="https://player.vimeo.com/video/846054082?autoplay=1&loop=1&muted=1&background=1"
+              className="w-full h-full"
+              allow="autoplay; fullscreen"
+              allowFullScreen
+              title="No yard damage after post installation"
+            />
+          </div>
+          <p className="text-center text-sm text-primary-foreground/50 mt-4 font-light">
+            Immediately after setting posts — no yard damage.
+          </p>
+        </motion.div>
+
         {/* Clean Site Guarantee */}
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
           <motion.div
