@@ -7,7 +7,7 @@ import EngineeringDataSection from "@/components/sections/EngineeringDataSection
 import HowItWorksSection from "@/components/sections/HowItWorksSection";
 import InstallComparisonSection from "@/components/sections/InstallComparisonSection";
 import FenceTypesSection from "@/components/sections/FenceTypesSection";
-import GallerySection from "@/components/sections/GallerySection";
+
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import EstimateCalculator from "@/components/sections/EstimateCalculator";
 import FAQSection from "@/components/sections/FAQSection";
