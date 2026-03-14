@@ -37,6 +37,7 @@ const Index = () => {
       </main>
       <Footer />
       <MobileStickyBar />
+      <FloatingQuoteButton />
     </>
   );
 };
