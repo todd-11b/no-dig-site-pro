@@ -65,12 +65,12 @@ export default function EngineeringDataSection() {
                   <span className="text-sm font-medium text-primary-foreground">SteelCore™</span>
                   <span className="text-lg md:text-xl font-bold text-primary-foreground tabular-nums">{metric.steelcore.value}</span>
                 </div>
-                <div className="w-full bg-primary-foreground/10 h-2.5 rounded-full overflow-hidden">
+                <div className="w-full bg-primary-foreground/10 h-4 rounded-full overflow-hidden">
                   <motion.div
                     initial={{ width: 0 }}
                     whileInView={{ width: metric.steelcore.width }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 1.2, ease: "easeOut", delay: 0.2 }}
+                    viewport={{ once: true, margin: "-80px" }}
+                    transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
                     className="bg-accent h-full rounded-full"
                   />
                 </div>
