@@ -49,10 +49,16 @@ export default function FenceTypesSection() {
           viewport={{ once: true }}
           className="max-w-2xl mb-20"
         >
-          <p className="text-label text-accent mb-5">Fence Types</p>
-          <h2 className="text-section-heading mb-5">Every fence. One unbreakable foundation.</h2>
+          <p className="text-label text-accent mb-5">Hidden Strength</p>
+          <h2 className="text-section-heading mb-5">The post your neighbor will never see is the reason your fence outlasts theirs.</h2>
+          <p className="text-body mb-4">
+            Traditional wood posts rot. Moisture gets in, dry rot starts, termites finish the job. Treated or not, every wood post fails at the ground line.
+          </p>
+          <p className="text-body mb-4">
+            SteelCore™ posts are structural steel — galvanized, powder-coated, rust-proof — hidden completely inside the fence. You see wood on both sides. No ugly side. No brackets. No visible hardware.
+          </p>
           <p className="text-body">
-            Every fence type below is installed with the SteelCore™ No-Dig Post System.
+            Your fence looks like wood. It performs like steel. You never replace a post.
           </p>
         </motion.div>
 
