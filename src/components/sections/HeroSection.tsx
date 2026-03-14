@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import heroImg from "@/assets/hero-install.jpg";
 
 const pillars = [
-  { word: "Faster", proof: "Installed in hours — not days." },
+  { word: "Faster", proof: "Same-day install. No concrete cure wait." },
   { word: "Cleaner", proof: "No concrete. No torn-up yards." },
-  { word: "Stronger", proof: "4× the hold of a traditional post." },
+  { word: "Stronger", proof: "8× the strength of a wood post." },
 ];
 
 export default function HeroSection() {
