@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { X, Check } from "lucide-react";
-import comparisonImg from "@/assets/comparison-posts.jpg";
+import traditionalPost from "@/assets/traditional-post-cross-section.png";
+import steelcorePost from "@/assets/steelcore-post-cross-section.png";
 
 export default function HiddenProblemSection() {
   return (
