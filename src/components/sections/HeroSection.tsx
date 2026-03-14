@@ -1,101 +1,93 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Wind, Star, MapPin, Droplets, Shield, CheckCircle } from "lucide-react";
 import heroImg from "@/assets/hero-install.jpg";
 
 const stats = [
-  { icon: Wind, value: "110+", label: "MPH Wind Rated" },
-  { icon: CheckCircle, value: "500+", label: "Fences Installed" },
-  { icon: Star, value: "4.9★", label: "Google Rating" },
-  { icon: MapPin, value: "KC", label: "Locally Owned" },
-  { icon: Droplets, value: "0", label: "Concrete Used" },
+  { value: "110+", label: "MPH WIND RATED" },
+  { value: "500+", label: "FENCES INSTALLED" },
+  { value: "4.9★", label: "GOOGLE RATING" },
+  { value: "KC", label: "LOCALLY OWNED" },
+  { value: "0", label: "CONCRETE USED" },
 ];
-
-const trustBadges = ["Licensed & Insured", "Clean Site Guarantee", "PostMaster+® Lifetime Warranty"];
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center pt-20 section-padding-lg overflow-hidden">
-      {/* BG image */}
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Full-bleed background */}
       <div className="absolute inset-0 z-0">
-        <img src={heroImg} alt="" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-r from-card/95 via-card/85 to-card/40" />
+        <img
+          src={heroImg}
+          alt="Beautiful Kansas City home with fence"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-primary/60" />
       </div>
 
-      <div className="container mx-auto relative z-10">
-        <div className="max-w-2xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <span className="inline-block text-cta text-accent mb-4">
-              SteelCore™ No-Dig Post System
-            </span>
-            <h1 className="text-display text-primary mb-6">
-              Stronger fences. <br />
-              <span className="text-accent">No digging.</span> <br />
-              No yard damage.
-            </h1>
-            <p className="text-body max-w-lg mb-8">
-              The SteelCore™ No-Dig Post System. 4X stronger than concrete. Built for Kansas City weather.
-            </p>
-          </motion.div>
+      {/* Content — centered, generous spacing */}
+      <div className="relative z-10 container mx-auto px-6 md:px-8 pt-24 pb-32 flex flex-col items-center text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+          className="max-w-4xl"
+        >
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-black tracking-[-0.04em] leading-[0.95] text-primary-foreground mb-8">
+            Stronger fences.
+            <br />
+            No digging.
+            <br />
+            No yard damage.
+          </h1>
+        </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-wrap gap-4 mb-12"
-          >
-            <Link
-              to="/contact"
-              className="bg-accent text-accent-foreground px-8 py-4 rounded-lg text-cta hover:brightness-110 transition-all shadow-lift hover:shadow-lift-hover hover:-translate-y-0.5"
-            >
-              Get Your Free Quote
-            </Link>
-            <a
-              href="#how-it-works"
-              className="border-2 border-primary text-primary px-8 py-4 rounded-lg text-cta hover:bg-primary hover:text-primary-foreground transition-all"
-            >
-              See How It Works
-            </a>
-          </motion.div>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+          className="text-lg md:text-xl text-primary-foreground/70 max-w-xl mb-12 leading-relaxed"
+        >
+          The SteelCore™ No-Dig Post System. 4X stronger than concrete.
+          Built for Kansas City weather.
+        </motion.p>
 
-          {/* Stats Strip */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-wrap gap-6 md:gap-8 mb-6"
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-col sm:flex-row items-center gap-4 mb-20"
+        >
+          <Link
+            to="/contact"
+            className="bg-accent text-accent-foreground px-10 py-4 rounded-full text-sm font-bold uppercase tracking-widest hover:brightness-110 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
           >
-            {stats.map((stat) => (
-              <div key={stat.label} className="flex items-center gap-2">
-                <stat.icon className="w-4 h-4 text-accent" />
-                <span className="text-sm font-bold text-primary tabular-nums">{stat.value}</span>
-                <span className="text-xs text-muted-foreground">{stat.label}</span>
+            Get Your Free Quote
+          </Link>
+          <a
+            href="#how-it-works"
+            className="border border-primary-foreground/30 text-primary-foreground px-10 py-4 rounded-full text-sm font-bold uppercase tracking-widest hover:bg-primary-foreground/10 transition-all backdrop-blur-sm"
+          >
+            See How It Works
+          </a>
+        </motion.div>
+
+        {/* Stats — bottom of hero, spaced wide */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.6 }}
+          className="flex flex-wrap justify-center gap-x-10 gap-y-6 md:gap-x-16"
+        >
+          {stats.map((stat) => (
+            <div key={stat.label} className="text-center">
+              <div className="text-3xl md:text-4xl font-black text-accent tracking-tight tabular-nums">
+                {stat.value}
               </div>
-            ))}
-          </motion.div>
-
-          {/* Trust Badges */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.7, delay: 0.6 }}
-            className="flex flex-wrap gap-3"
-          >
-            {trustBadges.map((badge) => (
-              <span
-                key={badge}
-                className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground bg-primary/5 px-3 py-1.5 rounded-full"
-              >
-                <Shield className="w-3 h-3 text-accent" />
-                {badge}
-              </span>
-            ))}
-          </motion.div>
-        </div>
+              <div className="text-[10px] md:text-xs font-semibold uppercase tracking-[0.2em] text-primary-foreground/50 mt-1">
+                {stat.label}
+              </div>
+            </div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );
