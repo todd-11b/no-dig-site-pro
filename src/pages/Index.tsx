@@ -21,10 +21,10 @@ const Index = () => {
       <main className="pb-16 lg:pb-0">
         <HeroSection />
         <HiddenProblemSection />
+        <FenceTypesSection />
         <EngineeringDataSection />
         <HowItWorksSection />
         <InstallComparisonSection />
-        <FenceTypesSection />
         
         <TestimonialsSection />
         <EstimateCalculator />
