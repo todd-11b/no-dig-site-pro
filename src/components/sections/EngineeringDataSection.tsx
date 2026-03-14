@@ -86,7 +86,7 @@ export default function EngineeringDataSection() {
                   <motion.div
                     initial={{ width: 0 }}
                     whileInView={{ width: metric.traditional.width }}
-                    viewport={{ once: true, margin: "-80px" }}
+                    viewport={{ once: true, amount: 0.5 }}
                     transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
                     className="bg-primary-foreground/60 h-full rounded-full"
                   />
