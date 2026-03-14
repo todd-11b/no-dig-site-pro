@@ -94,7 +94,7 @@ export default function EstimateCalculator() {
   const maxPrice = Math.round((base.max * length + gateCost + removalCost) * slopedMult);
 
   return (
-    <section id="estimate" className="py-24 md:py-32 bg-muted/40">
+    <section id="estimate" className="py-24 md:py-32 bg-secondary">
       <div className="container mx-auto px-6 md:px-8 max-w-5xl">
         {/* Header */}
         <motion.div
