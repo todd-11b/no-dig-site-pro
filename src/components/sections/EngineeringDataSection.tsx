@@ -23,7 +23,7 @@ const metrics = [
 
 export default function EngineeringDataSection() {
   return (
-    <section className="section-padding bg-background">
+    <section className="section-padding bg-primary text-primary-foreground">
       <div className="container mx-auto max-w-3xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -32,16 +32,16 @@ export default function EngineeringDataSection() {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="mb-16"
         >
-          <p className="text-label text-accent mb-5">Engineering</p>
-          <h2 className="text-section-heading mb-8">The numbers don't lie.</h2>
+          <p className="text-xs font-medium uppercase tracking-[0.15em] text-accent mb-5">Engineering</p>
+          <h2 className="text-section-heading text-primary-foreground mb-8">The numbers don't lie.</h2>
           <div className="flex items-center gap-8">
             <div className="flex items-center gap-2.5">
               <span className="w-3 h-3 rounded-sm bg-accent" />
-              <span className="text-sm font-medium text-foreground">SteelCore™</span>
+              <span className="text-sm font-medium text-primary-foreground">SteelCore™</span>
             </div>
             <div className="flex items-center gap-2.5">
-              <span className="w-3 h-3 rounded-sm bg-border" />
-              <span className="text-sm font-medium text-muted-foreground">Traditional</span>
+              <span className="w-3 h-3 rounded-sm bg-primary-foreground/20" />
+              <span className="text-sm font-medium text-primary-foreground/50">Traditional</span>
             </div>
           </div>
         </motion.div>
@@ -56,16 +56,16 @@ export default function EngineeringDataSection() {
               transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
             >
               <div className="flex items-baseline justify-between mb-8">
-                <h3 className="text-xl md:text-2xl font-semibold text-foreground">{metric.category}</h3>
+                <h3 className="text-xl md:text-2xl font-semibold text-primary-foreground">{metric.category}</h3>
                 <span className="text-xs font-medium text-accent">{metric.badge}</span>
               </div>
 
               <div className="mb-2">
                 <div className="flex justify-between items-center mb-2">
-                  <span className="text-sm font-medium text-foreground">SteelCore™</span>
-                  <span className="text-lg md:text-xl font-bold text-foreground tabular-nums">{metric.steelcore.value}</span>
+                  <span className="text-sm font-medium text-primary-foreground">SteelCore™</span>
+                  <span className="text-lg md:text-xl font-bold text-primary-foreground tabular-nums">{metric.steelcore.value}</span>
                 </div>
-                <div className="w-full bg-secondary h-2.5 rounded-full overflow-hidden">
+                <div className="w-full bg-primary-foreground/10 h-2.5 rounded-full overflow-hidden">
                   <motion.div
                     initial={{ width: 0 }}
                     whileInView={{ width: metric.steelcore.width }}
@@ -74,24 +74,24 @@ export default function EngineeringDataSection() {
                     className="bg-accent h-full rounded-full"
                   />
                 </div>
-                <p className="text-xs text-muted-foreground mt-2">{metric.steelcore.note}</p>
+                <p className="text-xs text-primary-foreground/40 mt-2">{metric.steelcore.note}</p>
               </div>
 
               <div className="mt-5">
                 <div className="flex justify-between items-center mb-2">
-                  <span className="text-sm text-muted-foreground">Traditional</span>
-                  <span className="text-base font-medium text-muted-foreground tabular-nums">{metric.traditional.value}</span>
+                  <span className="text-sm text-primary-foreground/50">Traditional</span>
+                  <span className="text-base font-medium text-primary-foreground/50 tabular-nums">{metric.traditional.value}</span>
                 </div>
-                <div className="w-full bg-secondary h-2.5 rounded-full overflow-hidden">
+                <div className="w-full bg-primary-foreground/10 h-2.5 rounded-full overflow-hidden">
                   <motion.div
                     initial={{ width: 0 }}
                     whileInView={{ width: metric.traditional.width }}
                     viewport={{ once: true }}
                     transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
-                    className="bg-muted-foreground/20 h-full rounded-full"
+                    className="bg-primary-foreground/15 h-full rounded-full"
                   />
                 </div>
-                <p className="text-xs text-muted-foreground mt-2">{metric.traditional.note}</p>
+                <p className="text-xs text-primary-foreground/40 mt-2">{metric.traditional.note}</p>
               </div>
             </motion.div>
           ))}
