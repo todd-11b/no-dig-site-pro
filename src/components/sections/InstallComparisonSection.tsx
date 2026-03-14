@@ -65,25 +65,26 @@ export default function InstallComparisonSection() {
           </motion.div>
         </div>
 
-        {/* Side-by-side Videos */}
-        <div className="grid md:grid-cols-2 gap-6 lg:gap-8 mb-24 lg:mb-32">
-          {/* Traditional - YouTube clip */}
+        {/* Side-by-side Videos — vertical */}
+        <div className="grid grid-cols-2 gap-4 lg:gap-8 mb-24 lg:mb-32 max-w-3xl mx-auto">
+          {/* Traditional - Pexels digging video */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <div className="rounded-2xl overflow-hidden aspect-video">
-              <iframe
-                src="https://www.youtube.com/embed/tdBfqxY-DRY?start=85&end=100&autoplay=0&mute=1&loop=1&playlist=tdBfqxY-DRY&controls=0&modestbranding=1&rel=0"
-                className="w-full h-full"
-                allow="autoplay; fullscreen"
-                allowFullScreen
-                title="Traditional fence post installation — digging and concrete"
+            <div className="rounded-2xl overflow-hidden aspect-[9/16] relative">
+              <video
+                src="https://videos.pexels.com/video-files/18689551/18689551-uhd_2730_1440_30fps.mp4"
+                className="w-full h-full object-cover"
+                autoPlay
+                loop
+                muted
+                playsInline
               />
             </div>
             <p className="text-center text-sm text-primary-foreground/50 mt-4 font-light">
-              Traditional: digging holes & mixing concrete.
+              Traditional: digging holes by hand.
             </p>
           </motion.div>
 
@@ -94,17 +95,18 @@ export default function InstallComparisonSection() {
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
           >
-            <div className="rounded-2xl overflow-hidden aspect-video">
+            <div className="rounded-2xl overflow-hidden aspect-[9/16]">
               <iframe
                 src="https://player.vimeo.com/video/846054082?autoplay=1&loop=1&muted=1&background=1"
                 className="w-full h-full"
+                style={{ transform: "scale(1.5)", transformOrigin: "center center" }}
                 allow="autoplay; fullscreen"
                 allowFullScreen
                 title="No yard damage after post installation"
               />
             </div>
             <p className="text-center text-sm text-primary-foreground/50 mt-4 font-light">
-              SteelCore™: immediately after setting posts — no damage.
+              SteelCore™: no digging, no damage.
             </p>
           </motion.div>
         </div>
