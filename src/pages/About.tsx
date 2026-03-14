@@ -22,12 +22,12 @@ export default function AboutPage() {
           <div className="container mx-auto max-w-3xl">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
               <span className="text-cta text-accent mb-4 block">About Us</span>
-              <h1 className="text-display text-primary mb-6">We Started Abrams Because the Bar Was Underground</h1>
+              <h1 className="text-display text-primary mb-6">A Backyard Problem. A Better Solution.</h1>
               <p className="text-body text-lg mb-8">
-                We don't sell fences. We sell peace of mind, clean installations, and a no-hassle experience.
+                We tried building a fence the traditional way in a KC neighborhood called Rockhill. The name says it all. Every hole had rocks in it. The concrete was a mess. The yard was destroyed. So we found a better method — driven steel posts, no digging, no concrete — and the fence went up faster, cleaner, and stronger than anything we'd seen.
               </p>
               <p className="text-body mb-6">
-                We built Abrams Fence because KC homeowners were getting burned — contractors who don't call back, yards destroyed, sprinkler lines hit, estimates that balloon. We decided to do it differently.
+                That's how Abrams Fence started. Not with a business plan. With a backyard problem and a better solution.
               </p>
               <p className="text-body mb-6">
                 Our method: the SteelCore™ No-Dig Post System with PostMaster+® structural steel. 4X stronger than concrete. 110+ MPH wind rated. Lifetime warranty. And when No-Dig isn't the right method for a specific yard, we say so.
