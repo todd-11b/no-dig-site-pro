@@ -52,7 +52,7 @@ export default function EngineeringDataSection() {
               key={metric.category}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
+              viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
             >
               <div className="flex items-baseline justify-between mb-8">
@@ -69,7 +69,7 @@ export default function EngineeringDataSection() {
                   <motion.div
                     initial={{ width: 0 }}
                     whileInView={{ width: metric.steelcore.width }}
-                    viewport={{ once: true, margin: "-80px" }}
+                    viewport={{ once: true, amount: 0.5 }}
                     transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
                     className="bg-accent h-full rounded-full"
                   />
@@ -86,7 +86,7 @@ export default function EngineeringDataSection() {
                   <motion.div
                     initial={{ width: 0 }}
                     whileInView={{ width: metric.traditional.width }}
-                    viewport={{ once: true, margin: "-80px" }}
+                    viewport={{ once: true, amount: 0.5 }}
                     transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
                     className="bg-primary-foreground/60 h-full rounded-full"
                   />
