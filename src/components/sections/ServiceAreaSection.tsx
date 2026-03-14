@@ -10,20 +10,19 @@ const areas = [
 
 export default function ServiceAreaSection() {
   return (
-    <section className="section-padding bg-card">
-      <div className="container mx-auto">
+    <section className="section-padding bg-secondary">
+      <div className="container mx-auto max-w-5xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="max-w-3xl mb-12"
+          className="max-w-2xl mb-20"
         >
-          <span className="text-cta text-accent mb-4 block">Coverage</span>
-          <h2 className="text-section-heading mb-4">Serving the Kansas City metro.</h2>
+          <p className="text-label text-accent mb-5">Coverage</p>
+          <h2 className="text-section-heading">Serving the Kansas City metro.</h2>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* Map placeholder */}
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -42,10 +41,9 @@ export default function ServiceAreaSection() {
             />
           </motion.div>
 
-          {/* Cities */}
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-2 gap-x-6 gap-y-3">
             {areas.map((area) => (
-              <div key={area} className="flex items-center gap-2 py-1.5">
+              <div key={area} className="flex items-center gap-2.5 py-1">
                 <MapPin className="w-3 h-3 text-accent shrink-0" />
                 <span className="text-sm text-muted-foreground">{area}</span>
               </div>
