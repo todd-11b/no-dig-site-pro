@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import postComparisonDiagram from "@/assets/post-comparison-diagram.png";
+
 
 export default function EngineeringDataSection() {
   return (
