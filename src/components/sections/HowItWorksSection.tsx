@@ -1,51 +1,46 @@
 import { motion } from "framer-motion";
-import { Eye, Hammer, Layers, Wrench } from "lucide-react";
 
 const steps = [
   {
-    num: "00",
-    title: "We Walk Your Yard First",
-    desc: "Before we unload a single tool, we walk your property. Fence lines marked. Utilities confirmed. Sprinkler lines flagged. Obstacles identified. No surprises.",
-    icon: Eye,
-  },
-  {
     num: "01",
-    title: "Hydraulic Drive",
-    desc: "Steel posts are driven deep into undisturbed soil using a hydraulic post driver. No digging. No concrete. No mess.",
-    icon: Hammer,
+    title: "We Walk Your Yard First",
+    desc: "Fence lines marked. Utilities confirmed. Sprinkler lines flagged. No surprises.",
   },
   {
     num: "02",
-    title: "Soil Compression",
-    desc: "KC's clay-heavy soil grips the driven steel post through skin friction, creating a natural anchor stronger than any concrete footing.",
-    icon: Layers,
+    title: "Hydraulic Drive",
+    desc: "Steel posts driven deep into undisturbed soil. No digging. No concrete. No mess.",
   },
   {
     num: "03",
+    title: "Soil Compression",
+    desc: "KC's clay-heavy soil grips the driven steel through skin friction — a natural anchor stronger than concrete.",
+  },
+  {
+    num: "04",
     title: "Build & Finish",
     desc: "Your fence is built on a foundation that won't rot, shift, or fail. Clean yard. Done in 1–2 days.",
-    icon: Wrench,
   },
 ];
 
 export default function HowItWorksSection() {
   return (
-    <section id="how-it-works" className="section-padding bg-background">
-      <div className="container mx-auto">
+    <section id="how-it-works" className="section-padding bg-secondary">
+      <div className="container mx-auto max-w-5xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-3xl mb-16"
+          className="max-w-2xl mb-20"
         >
-          <span className="text-cta text-accent mb-4 block">Process</span>
-          <h2 className="text-section-heading mb-6">
-            Three steps to a fence that lasts decades.
+          <p className="text-label text-accent mb-5">Process</p>
+          <h2 className="text-section-heading">
+            Four steps to a fence that lasts decades.
           </h2>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border rounded-2xl overflow-hidden">
           {steps.map((step, i) => (
             <motion.div
               key={step.num}
@@ -53,13 +48,10 @@ export default function HowItWorksSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-              className="card-surface p-8 hover:-translate-y-0.5 transition-transform"
+              className="bg-card p-8 lg:p-10"
             >
-              <div className="flex items-center gap-3 mb-4">
-                <span className="text-3xl font-black text-accent/20 tabular-nums">{step.num}</span>
-                <step.icon className="w-5 h-5 text-accent" />
-              </div>
-              <h3 className="text-lg font-bold text-primary mb-3">{step.title}</h3>
+              <span className="text-xs font-medium text-muted-foreground/40 tabular-nums mb-6 block">{step.num}</span>
+              <h3 className="text-base font-semibold text-foreground mb-3">{step.title}</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
             </motion.div>
           ))}

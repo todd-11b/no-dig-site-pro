@@ -23,12 +23,12 @@ const testimonials = [
     location: "Shawnee, KS",
   },
   {
-    text: "From the moment I contacted them for a quote to the final installation, their professionalism and expertise were evident. They took the time to understand my needs and provided valuable recommendations.",
+    text: "From the moment I contacted them for a quote to the final installation, their professionalism and expertise were evident.",
     author: "Clerk S.",
     location: "Kansas City",
   },
   {
-    text: "Their team demonstrated a high level of expertise and attention to detail from the start. They listened to my vision and provided a comprehensive plan that perfectly aligned with my needs.",
+    text: "Their team demonstrated a high level of expertise and attention to detail from the start. They listened to my vision and provided a comprehensive plan.",
     author: "Celene T.",
     location: "Kansas City",
   },
@@ -36,37 +36,37 @@ const testimonials = [
 
 export default function TestimonialsSection() {
   return (
-    <section className="section-padding bg-card">
-      <div className="container mx-auto">
+    <section className="section-padding bg-secondary">
+      <div className="container mx-auto max-w-5xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="max-w-3xl mb-16"
+          className="max-w-2xl mb-20"
         >
-          <span className="text-cta text-accent mb-4 block">Reviews</span>
+          <p className="text-label text-accent mb-5">Reviews</p>
           <h2 className="text-section-heading">Built different. Reviewed to prove it.</h2>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border rounded-2xl overflow-hidden">
           {testimonials.map((t, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.06 }}
-              className="card-surface p-6 hover:-translate-y-0.5 transition-transform"
+              transition={{ delay: i * 0.05 }}
+              className="bg-card p-8"
             >
-              <div className="flex gap-0.5 mb-4">
+              <div className="flex gap-0.5 mb-5">
                 {[...Array(5)].map((_, j) => (
-                  <Star key={j} className="w-4 h-4 fill-accent text-accent" />
+                  <Star key={j} className="w-3.5 h-3.5 fill-accent text-accent" />
                 ))}
               </div>
-              <p className="text-sm text-muted-foreground leading-relaxed mb-4">"{t.text}"</p>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-6">"{t.text}"</p>
               <div>
-                <p className="text-sm font-semibold text-primary">{t.author}</p>
-                <p className="text-xs text-muted-foreground">{t.location}</p>
+                <p className="text-sm font-medium text-foreground">{t.author}</p>
+                <p className="text-xs text-muted-foreground mt-0.5">{t.location}</p>
               </div>
             </motion.div>
           ))}

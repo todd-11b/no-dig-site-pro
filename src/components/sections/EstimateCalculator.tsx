@@ -1,13 +1,12 @@
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Calculator, ChevronRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const materials = ["Wood", "Vinyl", "Aluminum", "Chain Link"];
 const heights = ["4 ft", "6 ft", "8 ft"];
 const gateOptions = ["0", "1", "2", "3+"];
 
-// Rough price ranges per linear foot
 const priceMap: Record<string, { min: number; max: number }> = {
   "Wood-4 ft": { min: 25, max: 35 },
   "Wood-6 ft": { min: 30, max: 45 },
@@ -43,14 +42,14 @@ export default function EstimateCalculator() {
 
   return (
     <section id="estimate" className="section-padding bg-background">
-      <div className="container mx-auto">
+      <div className="container mx-auto max-w-5xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="max-w-3xl mb-12"
+          className="max-w-2xl mb-20"
         >
-          <span className="text-cta text-accent mb-4 block">Instant Estimate</span>
+          <p className="text-label text-accent mb-5">Instant Estimate</p>
           <h2 className="text-section-heading">Get a ballpark in 30 seconds.</h2>
         </motion.div>
 
@@ -59,13 +58,13 @@ export default function EstimateCalculator() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="card-surface p-8 md:p-12 max-w-3xl"
+          className="rounded-2xl border border-border bg-card p-8 md:p-12 max-w-2xl"
         >
-          {/* Length Slider */}
-          <div className="mb-8">
+          {/* Length */}
+          <div className="mb-10">
             <div className="flex justify-between items-end mb-3">
-              <label className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Fence Length</label>
-              <span className="text-2xl font-black text-primary tabular-nums">{length} <span className="text-sm font-bold">ft</span></span>
+              <label className="text-label">Fence Length</label>
+              <span className="text-2xl font-bold text-foreground tabular-nums">{length} <span className="text-sm font-medium text-muted-foreground">ft</span></span>
             </div>
             <input
               type="range"
@@ -74,25 +73,25 @@ export default function EstimateCalculator() {
               step="10"
               value={length}
               onChange={(e) => setLength(parseInt(e.target.value))}
-              className="w-full h-2 bg-border rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-accent [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:shadow-md"
+              className="w-full h-1.5 bg-border rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-accent [&::-webkit-slider-thumb]:cursor-pointer"
             />
-            <div className="flex justify-between text-xs text-muted-foreground mt-1">
+            <div className="flex justify-between text-xs text-muted-foreground/50 mt-2">
               <span>50 ft</span><span>500 ft</span>
             </div>
           </div>
 
-          {/* Height Toggle */}
-          <div className="mb-8">
-            <label className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-3 block">Fence Height</label>
+          {/* Height */}
+          <div className="mb-10">
+            <label className="text-label mb-3 block">Fence Height</label>
             <div className="flex gap-2">
               {heights.map((h) => (
                 <button
                   key={h}
                   onClick={() => setHeight(h)}
-                  className={`px-5 py-2.5 rounded-lg text-sm font-semibold transition-all ${
+                  className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all ${
                     height === h
-                      ? "bg-primary text-primary-foreground"
-                      : "bg-border/50 text-muted-foreground hover:bg-border"
+                      ? "bg-foreground text-background"
+                      : "bg-secondary text-muted-foreground hover:bg-border"
                   }`}
                 >
                   {h}
@@ -101,18 +100,18 @@ export default function EstimateCalculator() {
             </div>
           </div>
 
-          {/* Material Toggle */}
-          <div className="mb-8">
-            <label className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-3 block">Material</label>
+          {/* Material */}
+          <div className="mb-10">
+            <label className="text-label mb-3 block">Material</label>
             <div className="flex flex-wrap gap-2">
               {materials.map((m) => (
                 <button
                   key={m}
                   onClick={() => setMaterial(m)}
-                  className={`px-5 py-2.5 rounded-lg text-sm font-semibold transition-all ${
+                  className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all ${
                     material === m
-                      ? "bg-primary text-primary-foreground"
-                      : "bg-border/50 text-muted-foreground hover:bg-border"
+                      ? "bg-foreground text-background"
+                      : "bg-secondary text-muted-foreground hover:bg-border"
                   }`}
                 >
                   {m}
@@ -122,17 +121,17 @@ export default function EstimateCalculator() {
           </div>
 
           {/* Gates */}
-          <div className="mb-8">
-            <label className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-3 block">Number of Gates</label>
+          <div className="mb-10">
+            <label className="text-label mb-3 block">Gates</label>
             <div className="flex gap-2">
               {gateOptions.map((g) => (
                 <button
                   key={g}
                   onClick={() => setGates(g)}
-                  className={`px-5 py-2.5 rounded-lg text-sm font-semibold transition-all ${
+                  className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all ${
                     gates === g
-                      ? "bg-primary text-primary-foreground"
-                      : "bg-border/50 text-muted-foreground hover:bg-border"
+                      ? "bg-foreground text-background"
+                      : "bg-secondary text-muted-foreground hover:bg-border"
                   }`}
                 >
                   {g}
@@ -142,44 +141,44 @@ export default function EstimateCalculator() {
           </div>
 
           {/* Toggles */}
-          <div className="flex flex-wrap gap-6 mb-10">
+          <div className="flex flex-wrap gap-8 mb-12">
             <label className="flex items-center gap-3 cursor-pointer">
               <div
-                className={`relative w-12 h-6 rounded-full transition-colors ${removeOld ? "bg-accent" : "bg-border"}`}
+                className={`relative w-11 h-6 rounded-full transition-colors ${removeOld ? "bg-accent" : "bg-border"}`}
                 onClick={() => setRemoveOld(!removeOld)}
               >
-                <div className={`absolute top-0.5 w-5 h-5 rounded-full bg-card shadow-md transition-transform ${removeOld ? "translate-x-6" : "translate-x-0.5"}`} />
+                <div className={`absolute top-0.5 w-5 h-5 rounded-full bg-card shadow-sm transition-transform ${removeOld ? "translate-x-5" : "translate-x-0.5"}`} />
               </div>
-              <span className="text-sm font-medium text-primary">Remove old fence?</span>
+              <span className="text-sm text-foreground">Remove old fence</span>
             </label>
             <label className="flex items-center gap-3 cursor-pointer">
               <div
-                className={`relative w-12 h-6 rounded-full transition-colors ${sloped ? "bg-accent" : "bg-border"}`}
+                className={`relative w-11 h-6 rounded-full transition-colors ${sloped ? "bg-accent" : "bg-border"}`}
                 onClick={() => setSloped(!sloped)}
               >
-                <div className={`absolute top-0.5 w-5 h-5 rounded-full bg-card shadow-md transition-transform ${sloped ? "translate-x-6" : "translate-x-0.5"}`} />
+                <div className={`absolute top-0.5 w-5 h-5 rounded-full bg-card shadow-sm transition-transform ${sloped ? "translate-x-5" : "translate-x-0.5"}`} />
               </div>
-              <span className="text-sm font-medium text-primary">Sloped yard?</span>
+              <span className="text-sm text-foreground">Sloped yard</span>
             </label>
           </div>
 
-          {/* Price Output */}
-          <div className="bg-background rounded-xl p-6 mb-8 border border-border">
-            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2">Estimated Price Range</p>
-            <p className="text-4xl md:text-5xl font-black text-primary tabular-nums">
+          {/* Price */}
+          <div className="border-t border-border pt-8 mb-8">
+            <p className="text-label mb-3">Estimated Range</p>
+            <p className="text-4xl md:text-5xl font-bold text-foreground tabular-nums tracking-tight">
               ${minPrice.toLocaleString()} – ${maxPrice.toLocaleString()}
             </p>
-            <p className="text-xs text-muted-foreground mt-2">
+            <p className="text-xs text-muted-foreground/60 mt-3">
               Final price depends on site conditions, permits, and material selections.
             </p>
           </div>
 
           <Link
             to="/contact"
-            className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-8 py-4 rounded-lg text-cta hover:brightness-110 transition-all shadow-lift"
+            className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-8 py-4 rounded-full text-sm font-semibold tracking-wide hover:brightness-110 transition-all"
           >
             Get Your Exact Quote
-            <ChevronRight className="w-4 h-4" />
+            <ArrowRight className="w-4 h-4" />
           </Link>
         </motion.div>
       </div>
