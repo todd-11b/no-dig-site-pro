@@ -6,7 +6,6 @@ import HiddenProblemSection from "@/components/sections/HiddenProblemSection";
 import EngineeringDataSection from "@/components/sections/EngineeringDataSection";
 import HowItWorksSection from "@/components/sections/HowItWorksSection";
 import InstallComparisonSection from "@/components/sections/InstallComparisonSection";
-import CleanSiteSection from "@/components/sections/CleanSiteSection";
 import FenceTypesSection from "@/components/sections/FenceTypesSection";
 import GallerySection from "@/components/sections/GallerySection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
@@ -25,7 +24,6 @@ const Index = () => {
         <EngineeringDataSection />
         <HowItWorksSection />
         <InstallComparisonSection />
-        <CleanSiteSection />
         <FenceTypesSection />
         <GallerySection />
         <TestimonialsSection />
