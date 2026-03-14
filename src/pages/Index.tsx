@@ -25,7 +25,7 @@ const Index = () => {
         <HowItWorksSection />
         <InstallComparisonSection />
         <FenceTypesSection />
-        <GallerySection />
+        
         <TestimonialsSection />
         <EstimateCalculator />
         <FAQSection />
