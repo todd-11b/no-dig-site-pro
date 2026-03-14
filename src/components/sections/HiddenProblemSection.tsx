@@ -64,12 +64,17 @@ export default function HiddenProblemSection() {
               </div>
               <h3 className="text-xl font-bold text-primary">SteelCore™ Post</h3>
             </div>
-            <ul className="space-y-3 text-body">
+            <ul className="space-y-3 text-body mb-6">
               <li className="flex gap-2"><Check className="w-5 h-5 text-accent shrink-0 mt-0.5" /> Driven steel in undisturbed soil</li>
               <li className="flex gap-2"><Check className="w-5 h-5 text-accent shrink-0 mt-0.5" /> No concrete. No rot.</li>
               <li className="flex gap-2"><Check className="w-5 h-5 text-accent shrink-0 mt-0.5" /> 50+ year post lifespan</li>
               <li className="flex gap-2"><Check className="w-5 h-5 text-accent shrink-0 mt-0.5" /> 110+ MPH wind rated</li>
             </ul>
+            <img
+              src={steelcorePost}
+              alt="Cross-section of SteelCore no-dig driven steel post with soil compression and skin friction"
+              className="w-full max-w-xs mx-auto rounded-xl"
+            />
           </motion.div>
         </div>
 
