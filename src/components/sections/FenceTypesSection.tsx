@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { Shield, Check } from "lucide-react";
 import fenceWood from "@/assets/fence-wood.jpg";
 import fenceShadowbox from "@/assets/fence-shadowbox.jpg";
 import fenceHorizontal from "@/assets/fence-horizontal.jpg";
