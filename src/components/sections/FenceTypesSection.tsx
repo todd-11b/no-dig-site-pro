@@ -1,26 +1,33 @@
 import { motion } from "framer-motion";
-import completedFence from "@/assets/completed-fence.jpg";
+import fenceWood from "@/assets/fence-wood.jpg";
+import fenceShadowbox from "@/assets/fence-shadowbox.jpg";
+import fenceHorizontal from "@/assets/fence-horizontal.jpg";
+import fenceStained from "@/assets/fence-stained.png";
 
 const fenceTypes = [
   {
-    name: "Wood",
+    name: "Board-on-Board",
     desc: "Classic privacy and style. Cedar or treated pine on SteelCore™ driven posts.",
     detail: "Stain every 2–3 years · 50+ year posts",
+    img: fenceWood,
   },
   {
-    name: "Vinyl",
-    desc: "Zero maintenance privacy fencing. Won't fade, chip, or peel.",
-    detail: "Rinse with hose · 50+ year lifespan",
+    name: "Shadowbox",
+    desc: "Semi-private design with airflow and a beautiful look from both sides.",
+    detail: "Great for neighborhoods · 50+ year posts",
+    img: fenceShadowbox,
   },
   {
-    name: "Aluminum",
-    desc: "Elegant ornamental fencing for front yards, pools, and boundaries.",
-    detail: "No maintenance · 50+ year lifespan",
+    name: "Horizontal",
+    desc: "Modern, clean lines with horizontal boards on SteelCore™ posts.",
+    detail: "Contemporary style · 50+ year posts",
+    img: fenceHorizontal,
   },
   {
-    name: "Chain Link",
-    desc: "Affordable and durable for property lines, pets, and commercial use.",
-    detail: "No maintenance · 25+ year lifespan",
+    name: "Stained Cedar",
+    desc: "Premium stained cedar fencing for a rich, finished look.",
+    detail: "Custom stain options · 50+ year posts",
+    img: fenceStained,
   },
 ];
 
@@ -51,7 +58,7 @@ export default function FenceTypesSection() {
               transition={{ delay: i * 0.06 }}
               className="bg-card overflow-hidden"
             >
-              <img src={completedFence} alt={`${f.name} fence`} className="w-full h-40 object-cover" />
+              <img src={f.img} alt={`${f.name} fence`} className="w-full h-40 object-cover" />
               <div className="p-6 lg:p-8">
                 <h3 className="text-base font-semibold text-foreground mb-2">{f.name}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed mb-4">{f.desc}</p>
