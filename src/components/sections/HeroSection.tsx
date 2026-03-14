@@ -12,10 +12,19 @@ export default function HeroSection() {
   return (
     <section className="relative min-h-screen flex flex-col overflow-hidden">
       <div className="absolute inset-0 z-0">
+        {/* Desktop: photo */}
         <img
           src={heroImg}
           alt="Beautiful Kansas City home with fence"
-          className="w-full h-full object-cover"
+          className="hidden md:block w-full h-full object-cover"
+        />
+        {/* Mobile: video */}
+        <iframe
+          src="https://player.vimeo.com/video/846054082?autoplay=1&loop=1&muted=1&background=1"
+          className="md:hidden w-full h-full absolute inset-0"
+          style={{ transform: "scale(2)", transformOrigin: "center center" }}
+          allow="autoplay"
+          title="Fence installation video"
         />
         <div className="absolute inset-0 bg-primary/65" />
       </div>
