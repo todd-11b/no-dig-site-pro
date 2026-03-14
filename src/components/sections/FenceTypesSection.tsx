@@ -80,24 +80,6 @@ export default function FenceTypesSection() {
             </motion.div>
           ))}
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mt-24 max-w-2xl"
-        >
-          <p className="text-label text-accent mb-5">The Perfect Combination</p>
-          <h2 className="text-section-heading mb-6">
-            Give Your Fence The Strength Of Steel (While Looking Like Wood!)
-          </h2>
-          <p className="text-body mb-6">
-            The innovative design of the PostMaster+® Fence System gives your fence posts the ultimate longevity. Powder-coated steel construction resists both rust and rot, while every wooden post (treated or not) will eventually disintegrate from moisture, dry rot, or bug infestation.
-          </p>
-          <p className="text-body">
-            When you use PostMaster+® wood fencing, you get the perfect combination of appearance and durability. A clean, pristine wood appearance with the strength of structural steel underneath — no ugly side, because the post is invisible on both sides.
-          </p>
-        </motion.div>
       </div>
     </section>
   );
