@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import postComparisonDiagram from "@/assets/post-comparison-diagram.png";
+
 
 export default function EngineeringDataSection() {
   return (
@@ -84,20 +84,6 @@ export default function EngineeringDataSection() {
             </div>
           </motion.div>
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.3 }}
-          className="mt-16"
-        >
-          <img
-            src={postComparisonDiagram}
-            alt="Engineering comparison: Traditional concrete footing vs No-Dig driven steel post"
-            className="w-full max-w-4xl mx-auto rounded-2xl"
-          />
-        </motion.div>
       </div>
     </section>
   );
