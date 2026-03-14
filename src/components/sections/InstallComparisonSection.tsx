@@ -3,12 +3,6 @@ import { X, Check } from "lucide-react";
 import { Link } from "react-router-dom";
 import messyImg from "@/assets/messy-install.jpg";
 import cleanImg from "@/assets/clean-install.jpg";
-
-const guarantees = [
-  "Photo-documented cleanup on every job",
-  "Tarps used for all debris during installation",
-  "Magnet sweep for nails and metal fragments",
-  "All materials, trash, and equipment removed",
   "Grass, mulch, and landscaping protected throughout",
 ];
 
