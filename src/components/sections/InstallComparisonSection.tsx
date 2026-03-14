@@ -3,8 +3,6 @@ import { X, Check } from "lucide-react";
 import { Link } from "react-router-dom";
 import messyImg from "@/assets/messy-install.jpg";
 import cleanImg from "@/assets/clean-install.jpg";
-  "Grass, mulch, and landscaping protected throughout",
-];
 
 export default function InstallComparisonSection() {
   return (
