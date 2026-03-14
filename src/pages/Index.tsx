@@ -22,9 +22,9 @@ const Index = () => {
         <HeroSection />
         <HiddenProblemSection />
         <FenceTypesSection />
-        <EngineeringDataSection />
-        <HowItWorksSection />
         <InstallComparisonSection />
+        <HowItWorksSection />
+        <EngineeringDataSection />
         
         <TestimonialsSection />
         <EstimateCalculator />
