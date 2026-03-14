@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
 
 const materials = ["Wood", "Vinyl", "Aluminum", "Chain Link"];
 const heights = ["4 ft", "6 ft", "8 ft"];
@@ -22,6 +20,61 @@ const priceMap: Record<string, { min: number; max: number }> = {
   "Chain Link-8 ft": { min: 25, max: 40 },
 };
 
+function PillGroup({
+  options,
+  value,
+  onChange,
+}: {
+  options: string[];
+  value: string;
+  onChange: (v: string) => void;
+}) {
+  return (
+    <div className="flex flex-wrap gap-3">
+      {options.map((opt) => (
+        <button
+          key={opt}
+          onClick={() => onChange(opt)}
+          className={`h-11 min-w-[3.25rem] px-5 rounded-full text-sm font-medium transition-all duration-200 ${
+            value === opt
+              ? "bg-accent text-accent-foreground shadow-sm"
+              : "bg-background border border-border text-foreground/70 hover:border-foreground/30"
+          }`}
+        >
+          {opt}
+        </button>
+      ))}
+    </div>
+  );
+}
+
+function Toggle({
+  label,
+  checked,
+  onChange,
+}: {
+  label: string;
+  checked: boolean;
+  onChange: () => void;
+}) {
+  return (
+    <button onClick={onChange} className="flex items-center gap-3 group cursor-pointer">
+      <div
+        className={`relative w-12 h-7 rounded-full transition-colors duration-200 ${
+          checked ? "bg-accent" : "bg-border"
+        }`}
+      >
+        <div
+          className={`absolute top-1 w-5 h-5 rounded-full bg-white shadow transition-transform duration-200 ${
+            checked ? "translate-x-[1.3rem]" : "translate-x-1"
+          }`}
+        />
+      </div>
+      <span className="text-sm text-foreground">{label}</span>
+    </button>
+  );
+}
+
 export default function EstimateCalculator() {
   const [length, setLength] = useState(150);
   const [height, setHeight] = useState("6 ft");
@@ -41,31 +94,41 @@ export default function EstimateCalculator() {
   const maxPrice = Math.round((base.max * length + gateCost + removalCost) * slopedMult);
 
   return (
-    <section id="estimate" className="section-padding bg-muted/50">
-      <div className="container mx-auto max-w-5xl">
+    <section id="estimate" className="py-24 md:py-32 bg-muted/40">
+      <div className="container mx-auto px-6 md:px-8 max-w-5xl">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-14 md:mb-20"
         >
-          <p className="text-label text-accent mb-5">Free & Instant</p>
-          <h2 className="text-section-heading mb-4">Get your fence estimate.</h2>
-          <p className="text-muted-foreground text-lg">Adjust the options below for an approximate price range.</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent mb-4">
+            Free & Instant
+          </p>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-foreground">
+            Get your fence estimate.
+          </h2>
+          <p className="text-muted-foreground mt-4 text-base md:text-lg max-w-lg mx-auto">
+            Adjust the options below for an approximate price range.
+          </p>
         </motion.div>
 
+        {/* Calculator body */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-12 items-start"
+          className="flex flex-col lg:flex-row gap-10 lg:gap-16"
         >
-          {/* Left: Controls */}
-          <div className="lg:col-span-3 space-y-10">
-            {/* Length */}
+          {/* Controls */}
+          <div className="flex-1 space-y-9">
+            {/* Fence Length */}
             <div>
-              <label className="text-sm font-semibold text-foreground block mb-3">Fence Length (linear feet)</label>
+              <label className="text-sm font-semibold text-foreground block mb-4">
+                Fence Length (linear feet)
+              </label>
               <input
                 type="range"
                 min="50"
@@ -73,119 +136,70 @@ export default function EstimateCalculator() {
                 step="10"
                 value={length}
                 onChange={(e) => setLength(parseInt(e.target.value))}
-                className="w-full h-1.5 bg-border rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-accent [&::-webkit-slider-thumb]:cursor-pointer"
+                className="w-full h-1.5 bg-border rounded-full appearance-none cursor-pointer accent-accent [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-accent [&::-webkit-slider-thumb]:shadow-md [&::-webkit-slider-thumb]:cursor-pointer"
               />
-              <p className="text-center text-2xl font-bold text-foreground tabular-nums mt-3">{length} ft</p>
+              <p className="text-center text-3xl font-bold text-foreground tabular-nums mt-4 tracking-tight">
+                {length} ft
+              </p>
             </div>
 
-            {/* Height */}
+            {/* Fence Height */}
             <div>
-              <label className="text-sm font-semibold text-foreground block mb-3">Fence Height</label>
-              <div className="flex gap-2">
-                {heights.map((h) => (
-                  <button
-                    key={h}
-                    onClick={() => setHeight(h)}
-                    className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all ${
-                      height === h
-                        ? "bg-accent text-accent-foreground"
-                        : "bg-background border border-border text-muted-foreground hover:border-foreground/30"
-                    }`}
-                  >
-                    {h}
-                  </button>
-                ))}
-              </div>
+              <label className="text-sm font-semibold text-foreground block mb-3">
+                Fence Height
+              </label>
+              <PillGroup options={heights} value={height} onChange={setHeight} />
             </div>
 
             {/* Material */}
             <div>
               <label className="text-sm font-semibold text-foreground block mb-3">Material</label>
-              <div className="flex flex-wrap gap-2">
-                {materials.map((m) => (
-                  <button
-                    key={m}
-                    onClick={() => setMaterial(m)}
-                    className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all ${
-                      material === m
-                        ? "bg-accent text-accent-foreground"
-                        : "bg-background border border-border text-muted-foreground hover:border-foreground/30"
-                    }`}
-                  >
-                    {m}
-                  </button>
-                ))}
-              </div>
+              <PillGroup options={materials} value={material} onChange={setMaterial} />
             </div>
 
             {/* Gates */}
             <div>
-              <label className="text-sm font-semibold text-foreground block mb-3">Number of Gates</label>
-              <div className="flex gap-2">
-                {gateOptions.map((g) => (
-                  <button
-                    key={g}
-                    onClick={() => setGates(g)}
-                    className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all ${
-                      gates === g
-                        ? "bg-accent text-accent-foreground"
-                        : "bg-background border border-border text-muted-foreground hover:border-foreground/30"
-                    }`}
-                  >
-                    {g}
-                  </button>
-                ))}
-              </div>
+              <label className="text-sm font-semibold text-foreground block mb-3">
+                Number of Gates
+              </label>
+              <PillGroup options={gateOptions} value={gates} onChange={setGates} />
             </div>
 
             {/* Toggles */}
-            <div className="space-y-4">
-              <label className="flex items-center gap-3 cursor-pointer">
-                <div
-                  className={`relative w-11 h-6 rounded-full transition-colors ${removeOld ? "bg-accent" : "bg-border"}`}
-                  onClick={() => setRemoveOld(!removeOld)}
-                >
-                  <div className={`absolute top-0.5 w-5 h-5 rounded-full bg-card shadow-sm transition-transform ${removeOld ? "translate-x-5" : "translate-x-0.5"}`} />
-                </div>
-                <span className="text-sm text-foreground">Remove old fence</span>
-              </label>
-              <label className="flex items-center gap-3 cursor-pointer">
-                <div
-                  className={`relative w-11 h-6 rounded-full transition-colors ${sloped ? "bg-accent" : "bg-border"}`}
-                  onClick={() => setSloped(!sloped)}
-                >
-                  <div className={`absolute top-0.5 w-5 h-5 rounded-full bg-card shadow-sm transition-transform ${sloped ? "translate-x-5" : "translate-x-0.5"}`} />
-                </div>
-                <span className="text-sm text-foreground">Sloped yard</span>
-              </label>
+            <div className="flex flex-col gap-4 pt-1">
+              <Toggle label="Remove old fence" checked={removeOld} onChange={() => setRemoveOld(!removeOld)} />
+              <Toggle label="Sloped yard" checked={sloped} onChange={() => setSloped(!sloped)} />
             </div>
           </div>
 
-          {/* Right: Price card */}
-          <div className="lg:col-span-2">
-            <div className="rounded-2xl border border-border bg-card p-8 sticky top-24">
-              <p className="text-label mb-3">Estimated Price Range</p>
-              <p className="text-4xl md:text-5xl font-bold text-accent tabular-nums tracking-tight">
-                ${minPrice.toLocaleString()} – ${maxPrice.toLocaleString()}
+          {/* Price card */}
+          <div className="w-full lg:w-[380px] flex-shrink-0">
+            <div className="rounded-2xl border border-border/60 bg-card p-7 md:p-8 lg:sticky lg:top-24 shadow-sm">
+              <p className="text-xs font-semibold uppercase tracking-[0.15em] text-muted-foreground mb-3">
+                Estimated Price Range
               </p>
-              <p className="text-xs text-muted-foreground mt-3">
+              <p className="text-4xl md:text-[2.75rem] font-black text-accent tabular-nums tracking-tight leading-tight">
+                ${minPrice.toLocaleString()}&thinsp;–&thinsp;${maxPrice.toLocaleString()}
+              </p>
+              <p className="text-xs text-muted-foreground mt-3 leading-relaxed">
                 *Approximate. Final pricing based on on-site measurement.
               </p>
+              <p className="text-sm font-semibold text-accent mt-5">
+                Flexible payment options available
+              </p>
 
-              <p className="text-sm font-medium text-accent mt-4">Flexible payment options available</p>
+              <hr className="border-border my-6" />
 
-              <div className="border-t border-border mt-6 pt-6">
-                <p className="font-semibold text-foreground mb-4">Get Your Exact Quote</p>
-                <a
-                  href="tel:8166232363"
-                  className="flex items-center justify-center gap-2 bg-accent text-accent-foreground w-full py-4 rounded-full text-sm font-semibold tracking-wide hover:brightness-110 transition-all"
-                >
-                  Call Now — (816) 623-2363
-                </a>
-                <p className="text-xs text-muted-foreground text-center mt-3">
-                  We'll schedule your free on-site measurement.
-                </p>
-              </div>
+              <p className="font-bold text-foreground text-lg mb-5">Get Your Exact Quote</p>
+              <a
+                href="tel:8166232363"
+                className="flex items-center justify-center bg-accent text-accent-foreground w-full py-4 rounded-full text-sm font-bold tracking-wide hover:brightness-110 transition-all shadow-md"
+              >
+                Call Now — (816) 623-2363
+              </a>
+              <p className="text-xs text-muted-foreground text-center mt-3">
+                We'll schedule your free on-site measurement.
+              </p>
             </div>
           </div>
         </motion.div>
