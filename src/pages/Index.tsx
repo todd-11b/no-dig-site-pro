@@ -21,6 +21,7 @@ const Index = () => {
       <Header />
       <main className="pb-16 lg:pb-0">
         <HeroSection />
+        <HeroConceptSection />
         <HiddenProblemSection />
         <FenceTypesSection />
         <InstallComparisonSection />
