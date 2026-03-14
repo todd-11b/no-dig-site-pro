@@ -58,7 +58,7 @@ export default function FenceTypesSection() {
               transition={{ delay: i * 0.06 }}
               className="bg-card overflow-hidden"
             >
-              <img src={completedFence} alt={`${f.name} fence`} className="w-full h-40 object-cover" />
+              <img src={f.img} alt={`${f.name} fence`} className="w-full h-40 object-cover" />
               <div className="p-6 lg:p-8">
                 <h3 className="text-base font-semibold text-foreground mb-2">{f.name}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed mb-4">{f.desc}</p>
