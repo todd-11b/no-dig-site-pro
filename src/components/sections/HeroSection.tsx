@@ -2,12 +2,10 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import heroImg from "@/assets/hero-install.jpg";
 
-const stats = [
-  { value: "110+", label: "MPH WIND RATED" },
-  { value: "4×", label: "STRONGER THAN CONCRETE" },
-  { value: "50+", label: "YEAR POST LIFESPAN" },
-  { value: "500+", label: "FENCES INSTALLED" },
-  { value: "0", label: "CONCRETE USED" },
+const pillars = [
+  { word: "Faster.", proof: "Installed in hours — not days." },
+  { word: "Cleaner.", proof: "No concrete. No torn-up yards." },
+  { word: "Stronger.", proof: "4× the hold of a traditional post." },
 ];
 
 export default function HeroSection() {
@@ -23,7 +21,7 @@ export default function HeroSection() {
         <div className="absolute inset-0 bg-primary/60" />
       </div>
 
-      {/* Content — centered, generous spacing */}
+      {/* Content */}
       <div className="relative z-10 container mx-auto px-6 md:px-8 pt-24 pb-32 flex flex-col items-center text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -70,24 +68,37 @@ export default function HeroSection() {
           </a>
         </motion.div>
 
-        {/* Stats — bottom of hero, spaced wide */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.6 }}
-          className="flex flex-wrap justify-center gap-x-10 gap-y-6 md:gap-x-16"
-        >
-          {stats.map((stat) => (
-            <div key={stat.label} className="text-center">
-              <div className="text-3xl md:text-4xl font-black text-accent tracking-tight tabular-nums">
-                {stat.value}
-              </div>
-              <div className="text-[10px] md:text-xs font-semibold uppercase tracking-[0.2em] text-primary-foreground/50 mt-1">
-                {stat.label}
-              </div>
-            </div>
+        {/* Three-word story strip */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-10 md:gap-16">
+          {pillars.map((pillar, i) => (
+            <motion.div
+              key={pillar.word}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.8 + i * 0.25, ease: [0.16, 1, 0.3, 1] }}
+              className="text-center"
+            >
+              <span className="relative inline-block text-3xl md:text-4xl font-black text-primary-foreground tracking-tight">
+                {pillar.word}
+                {/* Orange underline that draws in */}
+                <motion.span
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ duration: 0.5, delay: 1.1 + i * 0.25, ease: [0.16, 1, 0.3, 1] }}
+                  className="absolute left-0 -bottom-1 w-full h-[3px] bg-accent origin-left rounded-full"
+                />
+              </span>
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 1.3 + i * 0.25 }}
+                className="text-sm text-primary-foreground/50 mt-2 max-w-[180px] mx-auto"
+              >
+                {pillar.proof}
+              </motion.p>
+            </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
