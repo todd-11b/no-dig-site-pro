@@ -1,88 +1,103 @@
 import { motion } from "framer-motion";
 
+const metrics = [
+  {
+    category: "Post strength",
+    badge: "8× stronger",
+    steelcore: { value: "344 MPa", width: "82%", note: "50,000 psi — ASTM A-653 structural steel" },
+    traditional: { value: "41 MPa", width: "10%", note: "~6,000 psi — wood grain average" },
+  },
+  {
+    category: "Wind rating",
+    badge: "2× the wind resistance",
+    steelcore: { value: "112 MPH", width: "85%", note: "ASCE 7-10 / IBC certified" },
+    traditional: { value: "50 MPH", width: "45%", note: "Structural failure threshold" },
+  },
+  {
+    category: "Post lifespan",
+    badge: "4× longer",
+    steelcore: { value: "50+ years", width: "90%", note: "Galvanized steel · Lifetime warranty" },
+    traditional: { value: "10–15 years", width: "22%", note: "KC clay + freeze-thaw conditions" },
+  },
+];
 
 export default function EngineeringDataSection() {
   return (
-    <section className="section-padding-lg bg-primary text-primary-foreground">
-      <div className="container mx-auto">
+    <section className="section-padding-lg bg-secondary">
+      <div className="container mx-auto max-w-3xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-3xl mb-16"
+          className="mb-10"
         >
-          <span className="text-cta text-accent mb-4 block">Engineering Data</span>
-          <h2 className="text-section-heading text-primary-foreground mb-6">
-            4X stronger than concrete.
-          </h2>
-          <p className="text-lg leading-relaxed opacity-70">
-            Steel yield strength: 250–420 MPa. Wood: 41 MPa. Our driven steel posts anchor into undisturbed soil using natural compression — not poured concrete that cracks, shifts, and traps moisture.
-          </p>
+          <h2 className="text-section-heading mb-6">The numbers don't lie.</h2>
+          <div className="flex items-center gap-6">
+            <div className="flex items-center gap-2">
+              <span className="w-4 h-4 rounded bg-accent" />
+              <span className="text-sm font-semibold text-foreground">SteelCore™</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-4 h-4 rounded bg-border" />
+              <span className="text-sm font-semibold text-muted-foreground">Traditional</span>
+            </div>
+          </div>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {/* Steel */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="bg-primary-foreground/5 p-8 rounded-2xl border border-primary-foreground/10"
-          >
-            <div className="flex justify-between items-end mb-4">
-              <span className="text-sm font-bold uppercase tracking-widest opacity-60">Steel Yield Strength</span>
-              <span className="text-4xl font-black tabular-nums">420 <span className="text-lg font-bold">MPa</span></span>
-            </div>
-            <div className="w-full bg-primary-foreground/10 h-4 rounded-full overflow-hidden">
-              <motion.div
-                initial={{ width: 0 }}
-                whileInView={{ width: "100%" }}
-                viewport={{ once: true }}
-                transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
-                className="bg-primary-foreground h-full rounded-full"
-              />
-            </div>
+        <div className="space-y-12">
+          {metrics.map((metric, i) => (
+            <motion.div
+              key={metric.category}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-xl md:text-2xl font-bold text-foreground">{metric.category}</h3>
+                <span className="text-xs font-bold uppercase tracking-wider text-accent bg-accent/10 px-3 py-1 rounded-full">
+                  {metric.badge}
+                </span>
+              </div>
 
-            <div className="mt-8 flex justify-between items-end mb-4 opacity-40">
-              <span className="text-sm font-bold uppercase tracking-widest">Traditional Wood</span>
-              <span className="text-2xl font-bold tabular-nums">41 <span className="text-sm font-bold">MPa</span></span>
-            </div>
-            <div className="w-full bg-primary-foreground/10 h-4 rounded-full overflow-hidden opacity-40">
-              <div className="bg-primary-foreground/40 h-full rounded-full" style={{ width: "10%" }} />
-            </div>
-          </motion.div>
+              {/* SteelCore bar */}
+              <div className="mb-1">
+                <div className="flex justify-between items-center mb-2">
+                  <span className="text-sm font-semibold text-foreground">SteelCore™</span>
+                  <span className="text-lg md:text-xl font-black text-foreground tabular-nums">{metric.steelcore.value}</span>
+                </div>
+                <div className="w-full bg-border h-3 rounded-full overflow-hidden">
+                  <motion.div
+                    initial={{ width: 0 }}
+                    whileInView={{ width: metric.steelcore.width }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1.2, ease: "easeOut", delay: 0.2 }}
+                    className="bg-accent h-full rounded-full"
+                  />
+                </div>
+                <p className="text-xs text-muted-foreground mt-1.5">{metric.steelcore.note}</p>
+              </div>
 
-          {/* Wind */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="bg-primary-foreground/5 p-8 rounded-2xl border border-primary-foreground/10"
-          >
-            <div className="flex justify-between items-end mb-4">
-              <span className="text-sm font-bold uppercase tracking-widest opacity-60">SteelCore™ Wind Rating</span>
-              <span className="text-4xl font-black tabular-nums">110+ <span className="text-lg font-bold">MPH</span></span>
-            </div>
-            <div className="w-full bg-primary-foreground/10 h-4 rounded-full overflow-hidden">
-              <motion.div
-                initial={{ width: 0 }}
-                whileInView={{ width: "100%" }}
-                viewport={{ once: true }}
-                transition={{ duration: 1.2, ease: "easeOut", delay: 0.4 }}
-                className="bg-primary-foreground h-full rounded-full"
-              />
-            </div>
-
-            <div className="mt-8 flex justify-between items-end mb-4 opacity-40">
-              <span className="text-sm font-bold uppercase tracking-widest">Traditional Post Failure</span>
-              <span className="text-2xl font-bold tabular-nums">~49 <span className="text-sm font-bold">MPH</span></span>
-            </div>
-            <div className="w-full bg-primary-foreground/10 h-4 rounded-full overflow-hidden opacity-40">
-              <div className="bg-primary-foreground/40 h-full rounded-full" style={{ width: "45%" }} />
-            </div>
-          </motion.div>
+              {/* Traditional bar */}
+              <div className="mt-4">
+                <div className="flex justify-between items-center mb-2">
+                  <span className="text-sm font-medium text-muted-foreground">Traditional</span>
+                  <span className="text-base font-bold text-muted-foreground tabular-nums">{metric.traditional.value}</span>
+                </div>
+                <div className="w-full bg-border h-3 rounded-full overflow-hidden">
+                  <motion.div
+                    initial={{ width: 0 }}
+                    whileInView={{ width: metric.traditional.width }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
+                    className="bg-muted-foreground/30 h-full rounded-full"
+                  />
+                </div>
+                <p className="text-xs text-muted-foreground mt-1.5">{metric.traditional.note}</p>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
