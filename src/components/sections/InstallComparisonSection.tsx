@@ -65,26 +65,49 @@ export default function InstallComparisonSection() {
           </motion.div>
         </div>
 
-        {/* Video — No Yard Damage */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-24 lg:mb-32"
-        >
-          <div className="rounded-2xl overflow-hidden aspect-video">
-            <iframe
-              src="https://player.vimeo.com/video/846054082?autoplay=1&loop=1&muted=1&background=1"
-              className="w-full h-full"
-              allow="autoplay; fullscreen"
-              allowFullScreen
-              title="No yard damage after post installation"
-            />
-          </div>
-          <p className="text-center text-sm text-primary-foreground/50 mt-4 font-light">
-            Immediately after setting posts — no yard damage.
-          </p>
-        </motion.div>
+        {/* Side-by-side Videos */}
+        <div className="grid md:grid-cols-2 gap-6 lg:gap-8 mb-24 lg:mb-32">
+          {/* Traditional - YouTube clip */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <div className="rounded-2xl overflow-hidden aspect-video">
+              <iframe
+                src="https://www.youtube.com/embed/tdBfqxY-DRY?start=85&end=100&autoplay=0&mute=1&loop=1&playlist=tdBfqxY-DRY&controls=0&modestbranding=1&rel=0"
+                className="w-full h-full"
+                allow="autoplay; fullscreen"
+                allowFullScreen
+                title="Traditional fence post installation — digging and concrete"
+              />
+            </div>
+            <p className="text-center text-sm text-primary-foreground/50 mt-4 font-light">
+              Traditional: digging holes & mixing concrete.
+            </p>
+          </motion.div>
+
+          {/* SteelCore - Vimeo clip */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+          >
+            <div className="rounded-2xl overflow-hidden aspect-video">
+              <iframe
+                src="https://player.vimeo.com/video/846054082?autoplay=1&loop=1&muted=1&background=1"
+                className="w-full h-full"
+                allow="autoplay; fullscreen"
+                allowFullScreen
+                title="No yard damage after post installation"
+              />
+            </div>
+            <p className="text-center text-sm text-primary-foreground/50 mt-4 font-light">
+              SteelCore™: immediately after setting posts — no damage.
+            </p>
+          </motion.div>
+        </div>
 
         {/* Clean Site Guarantee */}
         <motion.div
