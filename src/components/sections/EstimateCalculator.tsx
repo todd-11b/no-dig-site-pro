@@ -110,7 +110,10 @@ export default function EstimateCalculator() {
             Get your fence estimate.
           </h2>
           <p className="text-muted-foreground mt-4 text-base md:text-lg max-w-lg mx-auto">
-            Adjust the options below for an approximate price range.
+            Instant ballpark estimate. Exact quote confirmed after on-site measurement.
+          </p>
+          <p className="text-xs text-muted-foreground/70 mt-2">
+            No spam. No obligation. Just a number.
           </p>
         </motion.div>
 

@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import MobileStickyBar from "@/components/MobileStickyBar";
+import FloatingQuoteButton from "@/components/FloatingQuoteButton";
 import HeroSection from "@/components/sections/HeroSection";
 import HeroConceptSection from "@/components/sections/HeroConceptSection";
 import HiddenProblemSection from "@/components/sections/HiddenProblemSection";
@@ -36,6 +37,7 @@ const Index = () => {
       </main>
       <Footer />
       <MobileStickyBar />
+      <FloatingQuoteButton />
     </>
   );
 };
