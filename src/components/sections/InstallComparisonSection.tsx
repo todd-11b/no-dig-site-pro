@@ -34,14 +34,14 @@ export default function InstallComparisonSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="rounded-2xl overflow-hidden border border-primary-foreground/10"
+            className="rounded-2xl overflow-hidden bg-card"
           >
             <img src={messyImg} alt="Messy traditional fence installation" className="w-full h-56 object-cover" />
             <div className="p-8">
-              <h3 className="text-base font-semibold text-primary-foreground mb-5">Traditional Installation</h3>
+              <h3 className="text-base font-semibold text-foreground mb-5">Traditional Installation</h3>
               <ul className="space-y-3">
                 {["Holes dug in your yard", "Dirt piles everywhere", "Wet concrete mixing", "Heavy equipment ruts"].map((item) => (
-                  <li key={item} className="flex gap-3 text-sm text-primary-foreground/50">
+                  <li key={item} className="flex gap-3 text-sm text-muted-foreground">
                     <X className="w-4 h-4 text-destructive shrink-0 mt-0.5" />
                     {item}
                   </li>
@@ -56,14 +56,14 @@ export default function InstallComparisonSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="rounded-2xl overflow-hidden border-2 border-accent/30"
+            className="rounded-2xl overflow-hidden bg-card border-2 border-accent/20"
           >
             <img src={cleanImg} alt="Clean SteelCore fence installation" className="w-full h-56 object-cover" />
             <div className="p-8">
-              <h3 className="text-base font-semibold text-primary-foreground mb-5">SteelCore™ Installation</h3>
+              <h3 className="text-base font-semibold text-foreground mb-5">SteelCore™ Installation</h3>
               <ul className="space-y-3">
                 {["Hydraulic post driver", "Clean installation", "Minimal lawn disturbance", "No concrete mess"].map((item) => (
-                  <li key={item} className="flex gap-3 text-sm text-primary-foreground/50">
+                  <li key={item} className="flex gap-3 text-sm text-muted-foreground">
                     <Check className="w-4 h-4 text-accent shrink-0 mt-0.5" />
                     {item}
                   </li>
@@ -73,7 +73,7 @@ export default function InstallComparisonSection() {
           </motion.div>
         </div>
 
-        {/* Clean Site Guarantee — flows naturally below */}
+        {/* Clean Site Guarantee */}
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

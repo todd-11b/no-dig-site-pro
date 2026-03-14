@@ -36,7 +36,7 @@ const testimonials = [
 
 export default function TestimonialsSection() {
   return (
-    <section className="section-padding bg-primary text-primary-foreground">
+    <section className="section-padding bg-secondary">
       <div className="container mx-auto max-w-5xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -44,11 +44,11 @@ export default function TestimonialsSection() {
           viewport={{ once: true }}
           className="max-w-2xl mb-20"
         >
-          <p className="text-xs font-medium uppercase tracking-[0.15em] text-accent mb-5">Reviews</p>
-          <h2 className="text-section-heading text-primary-foreground">Built different. Reviewed to prove it.</h2>
+          <p className="text-label text-accent mb-5">Reviews</p>
+          <h2 className="text-section-heading">Built different. Reviewed to prove it.</h2>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-primary-foreground/10 rounded-2xl overflow-hidden">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border rounded-2xl overflow-hidden">
           {testimonials.map((t, i) => (
             <motion.div
               key={i}
@@ -56,17 +56,17 @@ export default function TestimonialsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.05 }}
-              className="bg-primary p-8"
+              className="bg-card p-8"
             >
               <div className="flex gap-0.5 mb-5">
                 {[...Array(5)].map((_, j) => (
                   <Star key={j} className="w-3.5 h-3.5 fill-accent text-accent" />
                 ))}
               </div>
-              <p className="text-sm text-primary-foreground/60 leading-relaxed mb-6">"{t.text}"</p>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-6">"{t.text}"</p>
               <div>
-                <p className="text-sm font-medium text-primary-foreground">{t.author}</p>
-                <p className="text-xs text-primary-foreground/40 mt-0.5">{t.location}</p>
+                <p className="text-sm font-medium text-foreground">{t.author}</p>
+                <p className="text-xs text-muted-foreground mt-0.5">{t.location}</p>
               </div>
             </motion.div>
           ))}
