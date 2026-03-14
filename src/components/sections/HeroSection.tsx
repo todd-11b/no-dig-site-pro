@@ -4,9 +4,9 @@ import heroImg from "@/assets/hero-install.jpg";
 
 const stats = [
   { value: "110+", label: "MPH WIND RATED" },
+  { value: "4×", label: "STRONGER THAN CONCRETE" },
+  { value: "50+", label: "YEAR POST LIFESPAN" },
   { value: "500+", label: "FENCES INSTALLED" },
-  { value: "4.9★", label: "GOOGLE RATING" },
-  { value: "KC", label: "LOCALLY OWNED" },
   { value: "0", label: "CONCRETE USED" },
 ];
 
