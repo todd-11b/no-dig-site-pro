@@ -40,7 +40,7 @@ export default function EngineeringDataSection() {
                 whileInView={{ width: "100%" }}
                 viewport={{ once: true }}
                 transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
-                className="bg-accent h-full rounded-full"
+                className="bg-primary-foreground h-full rounded-full"
               />
             </div>
 
@@ -71,7 +71,7 @@ export default function EngineeringDataSection() {
                 whileInView={{ width: "100%" }}
                 viewport={{ once: true }}
                 transition={{ duration: 1.2, ease: "easeOut", delay: 0.4 }}
-                className="bg-accent h-full rounded-full"
+                className="bg-primary-foreground h-full rounded-full"
               />
             </div>
 
