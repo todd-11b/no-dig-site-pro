@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 
 const fenceTypes = [
   "6' Treated Pine Privacy",
@@ -25,12 +26,12 @@ const materialCostPerLF: Record<string, number> = {
   "4' Black Chain Link": 12.00,
 };
 
-const gateOptions = ["None", "1 Walk", "1 Double", "1 Walk + 1 Double"];
+const gateOptions = ["None", "1 Walk Gate", "1 Double Gate", "1 Walk + 1 Double"];
 
 const gateMatCost: Record<string, number> = {
   "None": 0,
-  "1 Walk": 170,
-  "1 Double": 340,
+  "1 Walk Gate": 170,
+  "1 Double Gate": 340,
   "1 Walk + 1 Double": 510,
 };
 
@@ -38,30 +39,36 @@ function roundTo50(n: number) {
   return Math.round(n / 50) * 50;
 }
 
-function PillGroup({
-  options,
+function SelectDropdown({
+  label,
   value,
+  options,
   onChange,
 }: {
-  options: string[];
+  label: string;
   value: string;
+  options: string[];
   onChange: (v: string) => void;
 }) {
   return (
-    <div className="flex flex-wrap gap-2">
-      {options.map((opt) => (
-        <button
-          key={opt}
-          onClick={() => onChange(opt)}
-          className={`h-11 px-4 rounded-full text-sm font-medium transition-all duration-200 ${
-            value === opt
-              ? "bg-accent text-accent-foreground shadow-sm"
-              : "bg-background border border-border text-foreground/70 hover:border-foreground/30"
-          }`}
+    <div>
+      <label className="text-sm font-semibold text-foreground block mb-2">
+        {label}
+      </label>
+      <div className="relative">
+        <select
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          className="w-full h-12 pl-4 pr-10 rounded-xl border border-border bg-background text-foreground text-sm font-medium appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent transition-all"
         >
-          {opt}
-        </button>
-      ))}
+          {options.map((opt) => (
+            <option key={opt} value={opt}>
+              {opt}
+            </option>
+          ))}
+        </select>
+        <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
+      </div>
     </div>
   );
 }
@@ -139,7 +146,7 @@ export default function EstimateCalculator() {
           className="flex flex-col lg:flex-row gap-10 lg:gap-16"
         >
           {/* Controls */}
-          <div className="flex-1 space-y-9">
+          <div className="flex-1 space-y-7">
             {/* Fence Length */}
             <div>
               <label className="text-sm font-semibold text-foreground block mb-4">
@@ -159,20 +166,20 @@ export default function EstimateCalculator() {
               </p>
             </div>
 
-            {/* Fence Type */}
-            <div>
-              <label className="text-sm font-semibold text-foreground block mb-3">
-                Fence Type
-              </label>
-              <PillGroup options={fenceTypes} value={fenceType} onChange={setFenceType} />
-            </div>
-
-            {/* Gates */}
-            <div>
-              <label className="text-sm font-semibold text-foreground block mb-3">
-                Gates
-              </label>
-              <PillGroup options={gateOptions} value={gate} onChange={setGate} />
+            {/* Fence Type & Gates - side by side on desktop */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <SelectDropdown
+                label="Fence Type"
+                value={fenceType}
+                options={fenceTypes}
+                onChange={setFenceType}
+              />
+              <SelectDropdown
+                label="Gates"
+                value={gate}
+                options={gateOptions}
+                onChange={setGate}
+              />
             </div>
 
             {/* Toggles */}
