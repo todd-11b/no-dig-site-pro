@@ -123,23 +123,6 @@ export default function HeroSection() {
         </motion.div>
       </div>
 
-      {/* Trust bar at bottom */}
-      <div className="relative z-10 bg-primary-foreground/10 backdrop-blur-md border-t border-primary-foreground/10">
-        <div className="container mx-auto px-6 md:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-primary-foreground/15">
-            {pillars.map((pillar, i) => (
-              <div key={i} className="flex flex-col items-center py-5 sm:py-6 px-4">
-                <span className="text-lg md:text-xl font-bold text-accent tracking-tight">
-                  {pillar.word}
-                </span>
-                <span className="text-xs md:text-sm text-primary-foreground/60 mt-1 font-light">
-                  {pillar.proof}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
     </section>
   );
 }
