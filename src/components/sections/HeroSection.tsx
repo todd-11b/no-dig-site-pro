@@ -63,8 +63,9 @@ function useTypewriter(lines: string[], charSpeed = 45, lineDelay = 300) {
 
 export default function HeroSection() {
   const [phase, setPhase] = useState<"headline" | "pillars">("headline");
-  const activeLines = phase === "headline" ? lines1 : lines2;
+  const activeLines = phase === "headline" ? lines1 : lines2Flat;
   const typed = useTypewriter(activeLines, 45, 300);
+  const isPillars = phase === "pillars";
 
   useEffect(() => {
     const timer = setTimeout(() => setPhase("pillars"), 4500);
