@@ -86,7 +86,7 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex flex-col overflow-hidden">
+    <section className="relative min-h-[100svh] flex flex-col overflow-hidden">
       <div className="absolute inset-0 z-0">
         <img
           src={heroImg}
@@ -104,9 +104,9 @@ export default function HeroSection() {
       </div>
 
       {/* Main content - centered */}
-      <div className="relative z-10 flex-1 container mx-auto px-6 md:px-8 pt-32 pb-20 flex flex-col items-center justify-center text-center">
-        <div className="max-w-4xl min-h-[280px] sm:min-h-[320px] md:min-h-[360px] flex items-center justify-center mb-10">
-          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-black tracking-[-0.05em] leading-[1.1] text-primary-foreground">
+      <div className="relative z-10 flex-1 container mx-auto px-5 md:px-8 pt-24 md:pt-32 pb-20 flex flex-col items-center justify-center text-center">
+        <div className="max-w-4xl min-h-[240px] sm:min-h-[320px] md:min-h-[360px] flex items-center justify-center mb-8 md:mb-10">
+          <h1 className="text-[2.5rem] sm:text-6xl md:text-7xl lg:text-[5.5rem] font-black tracking-[-0.05em] leading-[1.1] text-primary-foreground">
             {(typed.length > 0 ? typed : [""]).map((line, i) => {
               // Desktop pillars: bold keyword + light proof on same line
               if (isPillars && !isMobile && lines2DesktopBoldLen[i] > 0 && line.length > lines2DesktopBoldLen[i]) {
@@ -125,7 +125,7 @@ export default function HeroSection() {
               // Mobile pillars: alternate bold keyword / light proof lines
               const isMobileProof = isPillars && isMobile && i % 2 === 1;
               return (
-                <span key={`${phase}-${i}`} className={`block ${isMobileProof ? "text-2xl sm:text-3xl font-light" : ""}`}>
+                <span key={`${phase}-${i}`} className={`block ${isMobileProof ? "text-xl sm:text-2xl font-light mb-2" : isMobile && isPillars ? "mt-1" : ""}`}>
                   {line}
                   {i === typed.length - 1 && (
                     <span className="inline-block w-[3px] h-[0.85em] bg-primary-foreground/80 ml-1 animate-pulse align-middle" />
@@ -140,23 +140,22 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col sm:flex-row items-center gap-4"
+          className="flex flex-col sm:flex-row items-center gap-3 md:gap-4 w-full sm:w-auto"
         >
           <Link
             to="/contact"
-            className="bg-accent text-accent-foreground px-10 py-4 rounded-full text-sm font-semibold tracking-wide hover:brightness-110 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+            className="w-full sm:w-auto bg-accent text-accent-foreground px-8 md:px-10 py-4 rounded-full text-sm font-semibold tracking-wide hover:brightness-110 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 text-center"
           >
             Get Your Free Quote
           </Link>
           <a
             href="#how-it-works"
-            className="border border-primary-foreground/20 text-primary-foreground px-10 py-4 rounded-full text-sm font-semibold tracking-wide hover:bg-primary-foreground/10 transition-all backdrop-blur-sm"
+            className="w-full sm:w-auto border border-primary-foreground/20 text-primary-foreground px-8 md:px-10 py-4 rounded-full text-sm font-semibold tracking-wide hover:bg-primary-foreground/10 transition-all backdrop-blur-sm text-center"
           >
             See How It Works
           </a>
         </motion.div>
       </div>
-
     </section>
   );
 }

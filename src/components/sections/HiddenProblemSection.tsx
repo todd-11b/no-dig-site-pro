@@ -12,10 +12,10 @@ export default function HiddenProblemSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-2xl mb-20"
+          className="max-w-2xl mb-12 md:mb-20"
         >
-          <p className="text-label text-accent mb-5">The Problem</p>
-          <h2 className="text-section-heading mb-6">
+          <p className="text-label text-accent mb-4 md:mb-5">The Problem</p>
+          <h2 className="text-section-heading mb-4 md:mb-6">
             Every fence in your neighborhood is rotting from the inside out.
           </h2>
           <p className="text-body max-w-xl">
@@ -23,24 +23,24 @@ export default function HiddenProblemSection() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+        <div className="grid md:grid-cols-2 gap-4 md:gap-6 lg:gap-8">
           {/* Traditional */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="rounded-2xl border border-border bg-card p-8 lg:p-10"
+            className="rounded-2xl border border-border bg-card p-6 md:p-8 lg:p-10"
           >
-            <h3 className="text-lg font-semibold text-foreground mb-6">Traditional Post</h3>
-            <ul className="space-y-3 mb-8">
+            <h3 className="text-base md:text-lg font-semibold text-foreground mb-4 md:mb-6">Traditional Post</h3>
+            <ul className="space-y-2.5 md:space-y-3 mb-6 md:mb-8">
               {[
                 "Wood buried in concrete",
                 "Moisture trapped at the base",
                 "Rot guaranteed within 8–15 years",
                 "49 MPH failure point",
               ].map((item) => (
-                <li key={item} className="flex gap-3 text-sm text-muted-foreground">
+                <li key={item} className="flex gap-2.5 md:gap-3 text-sm text-muted-foreground">
                   <X className="w-4 h-4 text-destructive shrink-0 mt-0.5" />
                   {item}
                 </li>
@@ -49,7 +49,7 @@ export default function HiddenProblemSection() {
             <img
               src={traditionalPost}
               alt="Cross-section of traditional concrete footing showing rot and moisture problems"
-              className="w-full max-w-[240px] mx-auto"
+              className="w-full max-w-[200px] md:max-w-[240px] mx-auto"
             />
           </motion.div>
 
@@ -59,17 +59,17 @@ export default function HiddenProblemSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="rounded-2xl border-2 border-accent/20 bg-card p-8 lg:p-10"
+            className="rounded-2xl border-2 border-accent/20 bg-card p-6 md:p-8 lg:p-10"
           >
-            <h3 className="text-lg font-semibold text-foreground mb-6">SteelCore™ Post</h3>
-            <ul className="space-y-3 mb-8">
+            <h3 className="text-base md:text-lg font-semibold text-foreground mb-4 md:mb-6">SteelCore™ Post</h3>
+            <ul className="space-y-2.5 md:space-y-3 mb-6 md:mb-8">
               {[
                 "Driven steel in undisturbed soil",
                 "No concrete. No rot.",
                 "50+ year post lifespan",
                 "110+ MPH wind rated",
               ].map((item) => (
-                <li key={item} className="flex gap-3 text-sm text-muted-foreground">
+                <li key={item} className="flex gap-2.5 md:gap-3 text-sm text-muted-foreground">
                   <Check className="w-4 h-4 text-accent shrink-0 mt-0.5" />
                   {item}
                 </li>
@@ -78,7 +78,7 @@ export default function HiddenProblemSection() {
             <img
               src={steelcorePost}
               alt="Cross-section of SteelCore no-dig driven steel post"
-              className="w-full max-w-[240px] mx-auto"
+              className="w-full max-w-[200px] md:max-w-[240px] mx-auto"
             />
           </motion.div>
         </div>

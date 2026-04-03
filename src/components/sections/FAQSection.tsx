@@ -51,9 +51,9 @@ export default function FAQSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="mb-10 md:mb-16"
         >
-          <p className="text-label text-accent mb-5">FAQ</p>
+          <p className="text-label text-accent mb-4 md:mb-5">FAQ</p>
           <h2 className="text-section-heading">Common questions.</h2>
         </motion.div>
 
@@ -68,9 +68,9 @@ export default function FAQSection() {
             >
               <button
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                className="w-full flex items-center justify-between py-6 text-left group"
+                className="w-full flex items-center justify-between py-5 md:py-6 text-left group"
               >
-                <span className="text-[15px] font-medium text-foreground pr-8 group-hover:text-accent transition-colors">{faq.q}</span>
+                <span className="text-sm md:text-[15px] font-medium text-foreground pr-6 md:pr-8 group-hover:text-accent transition-colors">{faq.q}</span>
                 <ChevronDown
                   className={`w-4 h-4 text-muted-foreground shrink-0 transition-transform duration-200 ${
                     openIndex === i ? "rotate-180" : ""
@@ -78,8 +78,8 @@ export default function FAQSection() {
                 />
               </button>
               {openIndex === i && (
-                <div className="pb-6 -mt-1">
-                  <p className="text-sm text-muted-foreground leading-relaxed">{faq.a}</p>
+                <div className="pb-5 md:pb-6 -mt-1">
+                  <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">{faq.a}</p>
                 </div>
               )}
             </motion.div>

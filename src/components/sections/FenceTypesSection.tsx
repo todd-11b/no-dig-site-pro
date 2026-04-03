@@ -47,14 +47,14 @@ export default function FenceTypesSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="max-w-2xl mb-20"
+          className="max-w-2xl mb-12 md:mb-20"
         >
-          <p className="text-label text-accent mb-5">Hidden Strength</p>
-          <h2 className="text-section-heading mb-5">The post your neighbor will never see is the reason your fence outlasts theirs.</h2>
-          <p className="text-body mb-4">
+          <p className="text-label text-accent mb-4 md:mb-5">Hidden Strength</p>
+          <h2 className="text-section-heading mb-4 md:mb-5">The post your neighbor will never see is the reason your fence outlasts theirs.</h2>
+          <p className="text-body mb-3 md:mb-4">
             Traditional wood posts rot. Moisture gets in, dry rot starts, termites finish the job. Treated or not, every wood post fails at the ground line.
           </p>
-          <p className="text-body mb-4">
+          <p className="text-body mb-3 md:mb-4">
             SteelCore™ posts are structural steel — galvanized, powder-coated, rust-proof — hidden completely inside the fence. You see wood on both sides. No ugly side. No brackets. No visible hardware.
           </p>
           <p className="text-body">
@@ -62,7 +62,7 @@ export default function FenceTypesSection() {
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border rounded-2xl overflow-hidden">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-px bg-border rounded-2xl overflow-hidden">
           {fenceTypes.map((f, i) => (
             <motion.div
               key={f.name}
@@ -72,10 +72,10 @@ export default function FenceTypesSection() {
               transition={{ delay: i * 0.06 }}
               className="bg-card overflow-hidden"
             >
-              <img src={f.img} alt={`${f.name} fence`} className="w-full h-40 object-cover" />
-              <div className="p-6 lg:p-8">
-                <h3 className="text-base font-semibold text-foreground mb-2">{f.name}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
+              <img src={f.img} alt={`${f.name} fence`} className="w-full h-28 md:h-40 object-cover" />
+              <div className="p-4 md:p-6 lg:p-8">
+                <h3 className="text-sm md:text-base font-semibold text-foreground mb-1 md:mb-2">{f.name}</h3>
+                <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
               </div>
             </motion.div>
           ))}

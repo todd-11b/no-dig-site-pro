@@ -32,15 +32,15 @@ export default function HowItWorksSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-2xl mb-20"
+          className="max-w-2xl mb-12 md:mb-20"
         >
-          <p className="text-label text-accent mb-5">Process</p>
+          <p className="text-label text-accent mb-4 md:mb-5">Process</p>
           <h2 className="text-section-heading">
             Four steps to a fence that lasts decades.
           </h2>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border rounded-2xl overflow-hidden">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-border rounded-2xl overflow-hidden">
           {steps.map((step, i) => (
             <motion.div
               key={step.num}
@@ -48,11 +48,11 @@ export default function HowItWorksSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-              className="bg-card p-8 lg:p-10"
+              className="bg-card p-5 md:p-8 lg:p-10"
             >
-              <span className="text-xs font-medium text-muted-foreground/40 tabular-nums mb-6 block">{step.num}</span>
-              <h3 className="text-base font-semibold text-foreground mb-3">{step.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
+              <span className="text-xs font-medium text-muted-foreground/40 tabular-nums mb-4 md:mb-6 block">{step.num}</span>
+              <h3 className="text-sm md:text-base font-semibold text-foreground mb-2 md:mb-3">{step.title}</h3>
+              <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
             </motion.div>
           ))}
         </div>
