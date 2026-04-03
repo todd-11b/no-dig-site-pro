@@ -1,3 +1,4 @@
+import PageMeta from "@/components/PageMeta";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import MobileStickyBar from "@/components/MobileStickyBar";
@@ -15,6 +16,11 @@ import { motion } from "framer-motion";
 export default function NoDigPage() {
   return (
     <>
+      <PageMeta
+        title="No-Dig SteelCore™ Fence Posts | Abrams Fence Co. Kansas City"
+        description="Discover how the SteelCore™ No-Dig post system installs fences 4× stronger than concrete — no holes, no mess, no yard damage."
+        canonical="https://abramsfence.com/no-dig"
+      />
       <Header />
       <main className="pt-20 pb-16 lg:pb-0">
         <section className="section-padding-lg">

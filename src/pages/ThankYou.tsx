@@ -1,3 +1,4 @@
+import PageMeta from "@/components/PageMeta";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
@@ -7,6 +8,10 @@ import { Link } from "react-router-dom";
 export default function ThankYouPage() {
   return (
     <>
+      <PageMeta
+        title="Thank You | Abrams Fence Co."
+        description="Thank you for contacting Abrams Fence Company. We'll be in touch shortly with your free fence estimate."
+      />
       <Header />
       <main className="pt-20 min-h-screen flex items-center">
         <div className="container mx-auto px-4 text-center max-w-xl">

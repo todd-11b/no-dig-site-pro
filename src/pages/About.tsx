@@ -1,3 +1,4 @@
+import PageMeta from "@/components/PageMeta";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import MobileStickyBar from "@/components/MobileStickyBar";
@@ -16,6 +17,11 @@ const values = [
 export default function AboutPage() {
   return (
     <>
+      <PageMeta
+        title="About Abrams Fence Co. | Kansas City Fence Installer"
+        description="Learn about Abrams Fence Company's mission, values, and commitment to clean, no-dig fence installations across Kansas City."
+        canonical="https://abramsfence.com/about"
+      />
       <Header />
       <main className="pt-20 pb-16 lg:pb-0">
         <section className="section-padding-lg">

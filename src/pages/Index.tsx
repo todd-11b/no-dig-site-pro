@@ -1,3 +1,4 @@
+import PageMeta from "@/components/PageMeta";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import MobileStickyBar from "@/components/MobileStickyBar";
@@ -19,6 +20,11 @@ import FinalCTASection from "@/components/sections/FinalCTASection";
 const Index = () => {
   return (
     <>
+      <PageMeta
+        title="Kansas City No-Dig Fence Installation — SteelCore™ | Abrams Fence Co."
+        description="Abrams Fence Company installs fences 4× stronger than concrete with the SteelCore™ No-Dig Post System. No yard damage, no mess. Serving Kansas City metro."
+        canonical="https://abramsfence.com/"
+      />
       <Header />
       <main className="pb-16 lg:pb-0">
         <HeroSection />
