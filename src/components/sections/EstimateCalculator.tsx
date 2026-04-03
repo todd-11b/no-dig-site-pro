@@ -1,24 +1,42 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-const materials = ["Wood", "Vinyl", "Aluminum", "Chain Link"];
-const heights = ["4 ft", "6 ft", "8 ft"];
-const gateOptions = ["0", "1", "2", "3+"];
+const fenceTypes = [
+  "6' Treated Pine Privacy",
+  "6' Cedar Privacy",
+  "6' Cedar Horizontal",
+  "6' Vinyl Privacy",
+  "4' Vinyl Semi-Privacy",
+  "4' Black Aluminum 3-Rail",
+  "6' Black Aluminum Flat Top",
+  "4' Galvanized Chain Link",
+  "4' Black Chain Link",
+];
 
-const priceMap: Record<string, { min: number; max: number }> = {
-  "Wood-4 ft": { min: 25, max: 35 },
-  "Wood-6 ft": { min: 30, max: 45 },
-  "Wood-8 ft": { min: 40, max: 55 },
-  "Vinyl-4 ft": { min: 30, max: 45 },
-  "Vinyl-6 ft": { min: 35, max: 55 },
-  "Vinyl-8 ft": { min: 45, max: 65 },
-  "Aluminum-4 ft": { min: 30, max: 50 },
-  "Aluminum-6 ft": { min: 40, max: 60 },
-  "Aluminum-8 ft": { min: 50, max: 75 },
-  "Chain Link-4 ft": { min: 15, max: 25 },
-  "Chain Link-6 ft": { min: 20, max: 30 },
-  "Chain Link-8 ft": { min: 25, max: 40 },
+const materialCostPerLF: Record<string, number> = {
+  "6' Treated Pine Privacy": 11.25,
+  "6' Cedar Privacy": 19.63,
+  "6' Cedar Horizontal": 16.25,
+  "6' Vinyl Privacy": 18.75,
+  "4' Vinyl Semi-Privacy": 14.50,
+  "4' Black Aluminum 3-Rail": 19.50,
+  "6' Black Aluminum Flat Top": 25.88,
+  "4' Galvanized Chain Link": 10.00,
+  "4' Black Chain Link": 12.00,
 };
+
+const gateOptions = ["None", "1 Walk", "1 Double", "1 Walk + 1 Double"];
+
+const gateMatCost: Record<string, number> = {
+  "None": 0,
+  "1 Walk": 170,
+  "1 Double": 340,
+  "1 Walk + 1 Double": 510,
+};
+
+function roundTo50(n: number) {
+  return Math.round(n / 50) * 50;
+}
 
 function PillGroup({
   options,
@@ -30,12 +48,12 @@ function PillGroup({
   onChange: (v: string) => void;
 }) {
   return (
-    <div className="flex flex-wrap gap-3">
+    <div className="flex flex-wrap gap-2">
       {options.map((opt) => (
         <button
           key={opt}
           onClick={() => onChange(opt)}
-          className={`h-11 min-w-[3.25rem] px-5 rounded-full text-sm font-medium transition-all duration-200 ${
+          className={`h-11 px-4 rounded-full text-sm font-medium transition-all duration-200 ${
             value === opt
               ? "bg-accent text-accent-foreground shadow-sm"
               : "bg-background border border-border text-foreground/70 hover:border-foreground/30"
@@ -77,26 +95,22 @@ function Toggle({
 
 export default function EstimateCalculator() {
   const [length, setLength] = useState(150);
-  const [height, setHeight] = useState("6 ft");
-  const [material, setMaterial] = useState("Wood");
-  const [gates, setGates] = useState("1");
-  const [removeOld, setRemoveOld] = useState(false);
-  const [sloped, setSloped] = useState(false);
+  const [fenceType, setFenceType] = useState("6' Treated Pine Privacy");
+  const [gate, setGate] = useState("None");
+  const [demoHaulOff, setDemoHaulOff] = useState(false);
 
-  const key = `${material}-${height}`;
-  const base = priceMap[key] || { min: 30, max: 45 };
-  const gateCount = gates === "3+" ? 3 : parseInt(gates);
-  const gateCost = gateCount * 450;
-  const removalCost = removeOld ? length * 3 : 0;
-  const slopedMult = sloped ? 1.15 : 1;
+  const matPerLF = materialCostPerLF[fenceType] || 11.25;
+  const totalFenceMat = matPerLF * length;
+  const totalGateMat = gateMatCost[gate] || 0;
+  const demoMat = demoHaulOff ? 2.80 * length : 0;
+  const totalMat = totalFenceMat + totalGateMat + demoMat;
 
-  const minPrice = Math.round((base.min * length + gateCost + removalCost) * slopedMult);
-  const maxPrice = Math.round((base.max * length + gateCost + removalCost) * slopedMult);
+  const lowEstimate = roundTo50(totalMat * 2.5);
+  const highEstimate = roundTo50(totalMat * 3.2);
 
   return (
     <section id="estimate" className="py-24 md:py-32 bg-secondary">
       <div className="container mx-auto px-6 md:px-8 max-w-5xl">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -117,7 +131,6 @@ export default function EstimateCalculator() {
           </p>
         </motion.div>
 
-        {/* Calculator body */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -146,32 +159,29 @@ export default function EstimateCalculator() {
               </p>
             </div>
 
-            {/* Fence Height */}
+            {/* Fence Type */}
             <div>
               <label className="text-sm font-semibold text-foreground block mb-3">
-                Fence Height
+                Fence Type
               </label>
-              <PillGroup options={heights} value={height} onChange={setHeight} />
-            </div>
-
-            {/* Material */}
-            <div>
-              <label className="text-sm font-semibold text-foreground block mb-3">Material</label>
-              <PillGroup options={materials} value={material} onChange={setMaterial} />
+              <PillGroup options={fenceTypes} value={fenceType} onChange={setFenceType} />
             </div>
 
             {/* Gates */}
             <div>
               <label className="text-sm font-semibold text-foreground block mb-3">
-                Number of Gates
+                Gates
               </label>
-              <PillGroup options={gateOptions} value={gates} onChange={setGates} />
+              <PillGroup options={gateOptions} value={gate} onChange={setGate} />
             </div>
 
             {/* Toggles */}
             <div className="flex flex-col gap-4 pt-1">
-              <Toggle label="Remove old fence" checked={removeOld} onChange={() => setRemoveOld(!removeOld)} />
-              <Toggle label="Sloped yard" checked={sloped} onChange={() => setSloped(!sloped)} />
+              <Toggle
+                label="Demo & haul-off of old fence"
+                checked={demoHaulOff}
+                onChange={() => setDemoHaulOff(!demoHaulOff)}
+              />
             </div>
           </div>
 
@@ -182,7 +192,7 @@ export default function EstimateCalculator() {
                 Estimated Price Range
               </p>
               <p className="text-4xl md:text-[2.75rem] font-black text-accent tabular-nums tracking-tight leading-tight">
-                ${minPrice.toLocaleString()}&thinsp;–&thinsp;${maxPrice.toLocaleString()}
+                ${lowEstimate.toLocaleString()}&thinsp;–&thinsp;${highEstimate.toLocaleString()}
               </p>
               <p className="text-xs text-muted-foreground mt-3 leading-relaxed">
                 *Approximate. Final pricing based on on-site measurement.
