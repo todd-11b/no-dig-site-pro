@@ -1,6 +1,7 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { useIsMobile } from "@/hooks/use-mobile";
 import heroImg from "@/assets/hero-install.jpg";
 
 const pillars = [
@@ -11,14 +12,25 @@ const pillars = [
 ];
 
 const lines1 = ["Stronger fences.", "No digging.", "No yard damage."];
-const lines2Flat = [
+
+const lines2Desktop = [
   "Faster. Same-day install.",
   "Cleaner. No torn-up yards.",
   "Stronger. 8× the strength.",
   "Longer. Lasts 4× longer.",
 ];
-// Bold portion ends at first ". " + 1 char
-const lines2BoldLen = lines2Flat.map((l) => l.indexOf(". ") + 1);
+const lines2DesktopBoldLen = lines2Desktop.map((l) => l.indexOf(". ") + 1);
+
+const lines2Mobile = [
+  "Faster.",
+  "Same-day install.",
+  "Cleaner.",
+  "No torn-up yards.",
+  "Stronger.",
+  "8× the strength.",
+  "Longer.",
+  "Lasts 4× longer.",
+];
 
 function useTypewriter(lines: string[], charSpeed = 45, lineDelay = 300) {
   const [displayed, setDisplayed] = useState<string[]>([]);
@@ -30,7 +42,6 @@ function useTypewriter(lines: string[], charSpeed = 45, lineDelay = 300) {
       line.split("").forEach((_, ci) => {
         allChars.push({ lineIdx: li, charIdx: ci });
       });
-      // add a pause marker between lines
       if (li < lines.length - 1) {
         for (let p = 0; p < Math.round(lineDelay / charSpeed); p++) {
           allChars.push({ lineIdx: -1, charIdx: -1 });
