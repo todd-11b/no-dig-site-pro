@@ -64,9 +64,6 @@ export default function HeroSection() {
           >
             See How It Works
           </a>
-          <p className="text-primary-foreground/50 text-xs font-light mt-3 tracking-wide">
-            Free estimate. No obligation.
-          </p>
         </motion.div>
       </div>
 
