@@ -78,7 +78,7 @@ export default function HeroSection() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
                   duration: 0.6,
-                  delay: 0.7 + i * 0.2,
+                  delay: 1.3 + i * 0.25,
                   ease: [0.16, 1, 0.3, 1],
                 }}
                 className="flex flex-col items-center py-5 sm:py-6 px-4"
