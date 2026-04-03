@@ -12,10 +12,10 @@ const pillars = [
 
 const lines1 = ["Stronger fences.", "No digging.", "No yard damage."];
 const lines2 = [
-  "Faster. Same-day install.",
-  "Cleaner. No torn-up yards.",
-  "Stronger. 8× the strength.",
-  "Longer. Lasts 4× longer.",
+  { bold: "Faster.", light: " Same-day install." },
+  { bold: "Cleaner.", light: " No torn-up yards." },
+  { bold: "Stronger.", light: " 8× the strength." },
+  { bold: "Longer.", light: " Lasts 4× longer." },
 ];
 
 function useTypewriter(lines: string[], charSpeed = 45, lineDelay = 300) {
