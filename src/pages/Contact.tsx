@@ -9,6 +9,11 @@ import { Phone, Mail, MapPin, Clock } from "lucide-react";
 export default function ContactPage() {
   return (
     <>
+      <PageMeta
+        title="Get a Free Fence Quote | Abrams Fence Co. Kansas City"
+        description="Request a free no-obligation fence estimate from Abrams Fence Company. Same-day quotes, no-dig installation across Kansas City."
+        canonical="https://abramsfence.com/contact"
+      />
       <Header />
       <main className="pt-20 pb-16 lg:pb-0">
         <section className="section-padding-lg">
