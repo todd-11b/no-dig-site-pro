@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useMemo } from "react";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import heroImg from "@/assets/hero-install.jpg";
 
@@ -9,11 +9,61 @@ const pillars = [
   { word: "Stronger", proof: "8× the strength of a wood post." },
 ];
 
-export default function HeroSection() {
-  const [phase, setPhase] = useState<"headline" | "pillars">("headline");
+const lines1 = ["Stronger fences.", "No digging.", "No yard damage."];
+const lines2 = [
+  "Faster. Same-day install.",
+  "Cleaner. No torn-up yards.",
+  "Stronger. 8× the strength.",
+];
+
+function useTypewriter(lines: string[], charSpeed = 45, lineDelay = 300) {
+  const [displayed, setDisplayed] = useState<string[]>([]);
 
   useEffect(() => {
-    const timer = setTimeout(() => setPhase("pillars"), 3000);
+    let cancelled = false;
+    const allChars: { lineIdx: number; charIdx: number }[] = [];
+    lines.forEach((line, li) => {
+      line.split("").forEach((_, ci) => {
+        allChars.push({ lineIdx: li, charIdx: ci });
+      });
+      // add a pause marker between lines
+      if (li < lines.length - 1) {
+        for (let p = 0; p < Math.round(lineDelay / charSpeed); p++) {
+          allChars.push({ lineIdx: -1, charIdx: -1 });
+        }
+      }
+    });
+
+    setDisplayed([]);
+    let i = 0;
+    const tick = () => {
+      if (cancelled || i >= allChars.length) return;
+      const { lineIdx, charIdx } = allChars[i];
+      if (lineIdx >= 0) {
+        setDisplayed((prev) => {
+          const next = [...prev];
+          while (next.length <= lineIdx) next.push("");
+          next[lineIdx] = lines[lineIdx].slice(0, charIdx + 1);
+          return next;
+        });
+      }
+      i++;
+      setTimeout(tick, charSpeed);
+    };
+    tick();
+    return () => { cancelled = true; };
+  }, [lines, charSpeed, lineDelay]);
+
+  return displayed;
+}
+
+export default function HeroSection() {
+  const [phase, setPhase] = useState<"headline" | "pillars">("headline");
+  const activeLines = phase === "headline" ? lines1 : lines2;
+  const typed = useTypewriter(activeLines, 45, 300);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setPhase("pillars"), 4500);
     return () => clearTimeout(timer);
   }, []);
 
@@ -38,39 +88,16 @@ export default function HeroSection() {
       {/* Main content - centered */}
       <div className="relative z-10 flex-1 container mx-auto px-6 md:px-8 pt-32 pb-20 flex flex-col items-center justify-center text-center">
         <div className="max-w-4xl min-h-[280px] sm:min-h-[320px] md:min-h-[360px] flex items-center justify-center mb-10">
-          <AnimatePresence mode="wait">
-            {phase === "headline" ? (
-              <motion.h1
-                key="headline"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-black tracking-[-0.05em] leading-[0.92] text-primary-foreground"
-              >
-                Stronger fences.
-                <br />
-                No digging.
-                <br />
-                No yard damage.
-              </motion.h1>
-            ) : (
-              <motion.div
-                key="pillars"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-black tracking-[-0.05em] leading-[0.92] text-primary-foreground"
-              >
-                Faster. <span className="font-light">Same-day install.</span>
-                <br />
-                Cleaner. <span className="font-light">No torn-up yards.</span>
-                <br />
-                Stronger. <span className="font-light">8× the strength.</span>
-              </motion.div>
-            )}
-          </AnimatePresence>
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-black tracking-[-0.05em] leading-[0.92] text-primary-foreground">
+            {(typed.length > 0 ? typed : [""]).map((line, i) => (
+              <span key={`${phase}-${i}`} className="block">
+                {line}
+                {i === typed.length - 1 && (
+                  <span className="inline-block w-[3px] h-[0.85em] bg-primary-foreground/80 ml-1 animate-pulse align-middle" />
+                )}
+              </span>
+            ))}
+          </h1>
         </div>
 
         <motion.div
