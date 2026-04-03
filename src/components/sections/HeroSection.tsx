@@ -7,6 +7,7 @@ const pillars = [
   { word: "Faster", proof: "Same-day install." },
   { word: "Cleaner", proof: "No concrete. No torn-up yards." },
   { word: "Stronger", proof: "8× the strength of a wood post." },
+  { word: "Longer", proof: "Lasts 4× longer." },
 ];
 
 const lines1 = ["Stronger fences.", "No digging.", "No yard damage."];
@@ -14,6 +15,7 @@ const lines2 = [
   "Faster. Same-day install.",
   "Cleaner. No torn-up yards.",
   "Stronger. 8× the strength.",
+  "Longer. Lasts 4× longer.",
 ];
 
 function useTypewriter(lines: string[], charSpeed = 45, lineDelay = 300) {
@@ -124,7 +126,7 @@ export default function HeroSection() {
       {/* Trust bar at bottom */}
       <div className="relative z-10 bg-primary-foreground/10 backdrop-blur-md border-t border-primary-foreground/10">
         <div className="container mx-auto px-6 md:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-primary-foreground/15">
+          <div className="grid grid-cols-1 sm:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-primary-foreground/15">
             {pillars.map((pillar, i) => (
               <div key={i} className="flex flex-col items-center py-5 sm:py-6 px-4">
                 <span className="text-lg md:text-xl font-bold text-accent tracking-tight">
