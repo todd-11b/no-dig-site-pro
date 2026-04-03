@@ -5,8 +5,54 @@ import MobileStickyBar from "@/components/MobileStickyBar";
 import EstimateCalculator from "@/components/sections/EstimateCalculator";
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
+import { useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { useNavigate } from "react-router-dom";
+import { useToast } from "@/hooks/use-toast";
 
 export default function ContactPage() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const navigate = useNavigate();
+  const { toast } = useToast();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const fullName = (formData.get("name") as string) || "";
+    const nameParts = fullName.trim().split(" ");
+    const firstName = nameParts[0] || "";
+    const lastName = nameParts.slice(1).join(" ");
+
+    try {
+      const { data, error } = await supabase.functions.invoke("submit-lead", {
+        body: {
+          firstName,
+          lastName,
+          phone: formData.get("phone") as string,
+          email: formData.get("email") as string,
+          address: formData.get("address") as string,
+          notes: formData.get("notes") as string,
+          source: "Website Contact Form",
+        },
+      });
+
+      if (error) throw error;
+      navigate("/thank-you");
+    } catch (err) {
+      console.error("Lead submission error:", err);
+      toast({
+        title: "Something went wrong",
+        description: "Please try again or call us at (816) 623-2363.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <>
       <PageMeta
@@ -74,32 +120,33 @@ export default function ContactPage() {
                 className="card-surface p-8"
               >
                 <h2 className="text-xl font-bold text-primary mb-6">Request Your Free Estimate</h2>
-                <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); window.location.href = "/thank-you"; }}>
+                <form className="space-y-4" onSubmit={handleSubmit}>
                   <div>
                     <label className="text-sm font-medium text-primary mb-1 block">Full Name</label>
-                    <input type="text" required className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:ring-2 focus:ring-accent focus:border-accent outline-none transition-all" placeholder="John Smith" />
+                    <input name="name" type="text" required className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:ring-2 focus:ring-accent focus:border-accent outline-none transition-all" placeholder="John Smith" />
                   </div>
                   <div>
                     <label className="text-sm font-medium text-primary mb-1 block">Phone</label>
-                    <input type="tel" required className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:ring-2 focus:ring-accent focus:border-accent outline-none transition-all" placeholder="(816) 555-0123" />
+                    <input name="phone" type="tel" required className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:ring-2 focus:ring-accent focus:border-accent outline-none transition-all" placeholder="(816) 555-0123" />
                   </div>
                   <div>
                     <label className="text-sm font-medium text-primary mb-1 block">Email</label>
-                    <input type="email" required className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:ring-2 focus:ring-accent focus:border-accent outline-none transition-all" placeholder="john@example.com" />
+                    <input name="email" type="email" required className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:ring-2 focus:ring-accent focus:border-accent outline-none transition-all" placeholder="john@example.com" />
                   </div>
                   <div>
                     <label className="text-sm font-medium text-primary mb-1 block">Property Address</label>
-                    <input type="text" required className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:ring-2 focus:ring-accent focus:border-accent outline-none transition-all" placeholder="123 Main St, Overland Park, KS" />
+                    <input name="address" type="text" required className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:ring-2 focus:ring-accent focus:border-accent outline-none transition-all" placeholder="123 Main St, Overland Park, KS" />
                   </div>
                   <div>
                     <label className="text-sm font-medium text-primary mb-1 block">Tell us about your project</label>
-                    <textarea rows={3} className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:ring-2 focus:ring-accent focus:border-accent outline-none transition-all resize-none" placeholder="Fence type, length, any special requirements..." />
+                    <textarea name="notes" rows={3} className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:ring-2 focus:ring-accent focus:border-accent outline-none transition-all resize-none" placeholder="Fence type, length, any special requirements..." />
                   </div>
                   <button
                     type="submit"
-                    className="w-full bg-accent text-accent-foreground py-4 rounded-lg text-cta hover:brightness-110 transition-all shadow-lift"
+                    disabled={isSubmitting}
+                    className="w-full bg-accent text-accent-foreground py-4 rounded-lg text-cta hover:brightness-110 transition-all shadow-lift disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    Get My Free Quote
+                    {isSubmitting ? "Submitting..." : "Get My Free Quote"}
                   </button>
                   <p className="text-xs text-muted-foreground text-center">
                     Free estimate. No obligation. We'll respond within 24 hours.
