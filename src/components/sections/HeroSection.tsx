@@ -57,31 +57,17 @@ export default function HeroSection() {
             ) : (
               <motion.div
                 key="pillars"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5 }}
-                className="flex flex-col items-center gap-8 sm:gap-10"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-black tracking-[-0.05em] leading-[0.92] text-primary-foreground"
               >
-                {pillars.map((pillar, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{
-                      duration: 0.6,
-                      delay: i * 0.3,
-                      ease: [0.16, 1, 0.3, 1],
-                    }}
-                    className="text-center"
-                  >
-                    <span className="text-3xl sm:text-4xl md:text-5xl font-black text-accent tracking-tight block">
-                      {pillar.word}
-                    </span>
-                    <span className="text-base sm:text-lg md:text-xl text-primary-foreground/70 mt-2 font-light block">
-                      {pillar.proof}
-                    </span>
-                  </motion.div>
-                ))}
+                Faster. <span className="font-light">Same-day install.</span>
+                <br />
+                Cleaner. <span className="font-light">No torn-up yards.</span>
+                <br />
+                Stronger. <span className="font-light">8× the strength.</span>
               </motion.div>
             )}
           </AnimatePresence>
