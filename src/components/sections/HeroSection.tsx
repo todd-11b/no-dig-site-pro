@@ -7,6 +7,7 @@ const pillars = [
   { word: "Faster", proof: "Same-day install." },
   { word: "Cleaner", proof: "No concrete. No torn-up yards." },
   { word: "Stronger", proof: "8× the strength of a wood post." },
+  { word: "Longer", proof: "Lasts 4× longer." },
 ];
 
 const lines1 = ["Stronger fences.", "No digging.", "No yard damage."];
@@ -14,6 +15,7 @@ const lines2 = [
   "Faster. Same-day install.",
   "Cleaner. No torn-up yards.",
   "Stronger. 8× the strength.",
+  "Longer. Lasts 4× longer.",
 ];
 
 function useTypewriter(lines: string[], charSpeed = 45, lineDelay = 300) {
