@@ -68,27 +68,32 @@ export default function HeroSection() {
       </div>
 
       {/* Trust bar at bottom */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        className="relative z-10 bg-primary-foreground/10 backdrop-blur-md border-t border-primary-foreground/10"
-      >
+      <div className="relative z-10 bg-primary-foreground/10 backdrop-blur-md border-t border-primary-foreground/10">
         <div className="container mx-auto px-6 md:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-primary-foreground/15">
             {pillars.map((pillar, i) => (
-              <div key={i} className="flex flex-col items-center py-5 sm:py-6 px-4">
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.6,
+                  delay: 0.7 + i * 0.2,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                className="flex flex-col items-center py-5 sm:py-6 px-4"
+              >
                 <span className="text-lg md:text-xl font-bold text-accent tracking-tight">
                   {pillar.word}
                 </span>
                 <span className="text-xs md:text-sm text-primary-foreground/60 mt-1 font-light">
                   {pillar.proof}
                 </span>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }
