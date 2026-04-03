@@ -52,14 +52,14 @@ function SelectDropdown({
 }) {
   return (
     <div>
-      <label className="text-sm font-semibold text-foreground block mb-2">
+      <label className="text-xs md:text-sm font-semibold text-foreground block mb-2">
         {label}
       </label>
       <div className="relative">
         <select
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          className="w-full h-12 pl-4 pr-10 rounded-xl border border-border bg-background text-foreground text-sm font-medium appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent transition-all"
+          className="w-full h-11 md:h-12 pl-3 md:pl-4 pr-9 md:pr-10 rounded-xl border border-border bg-background text-foreground text-sm font-medium appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent transition-all"
         >
           {options.map((opt) => (
             <option key={opt} value={opt}>
@@ -85,17 +85,17 @@ function Toggle({
   return (
     <button onClick={onChange} className="flex items-center gap-3 group cursor-pointer">
       <div
-        className={`relative w-12 h-7 rounded-full transition-colors duration-200 ${
+        className={`relative w-11 md:w-12 h-6 md:h-7 rounded-full transition-colors duration-200 ${
           checked ? "bg-accent" : "bg-border"
         }`}
       >
         <div
-          className={`absolute top-1 w-5 h-5 rounded-full bg-white shadow transition-transform duration-200 ${
-            checked ? "translate-x-[1.3rem]" : "translate-x-1"
+          className={`absolute top-0.5 md:top-1 w-5 h-5 rounded-full bg-white shadow transition-transform duration-200 ${
+            checked ? "translate-x-[1.25rem] md:translate-x-[1.3rem]" : "translate-x-0.5 md:translate-x-1"
           }`}
         />
       </div>
-      <span className="text-sm text-foreground">{label}</span>
+      <span className="text-xs md:text-sm text-foreground">{label}</span>
     </button>
   );
 }
@@ -116,21 +116,21 @@ export default function EstimateCalculator() {
   const highEstimate = roundTo50(totalMat * 3.2);
 
   return (
-    <section id="estimate" className="py-24 md:py-32 bg-secondary">
-      <div className="container mx-auto px-6 md:px-8 max-w-5xl">
+    <section id="estimate" className="section-padding bg-secondary">
+      <div className="container mx-auto max-w-5xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-14 md:mb-20"
+          className="text-center mb-10 md:mb-14 lg:mb-20"
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent mb-4">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent mb-3 md:mb-4">
             Free & Instant
           </p>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-foreground">
+          <h2 className="text-section-heading text-foreground">
             Get your fence estimate.
           </h2>
-          <p className="text-muted-foreground mt-4 text-base md:text-lg max-w-lg mx-auto">
+          <p className="text-muted-foreground mt-3 md:mt-4 text-sm md:text-base lg:text-lg max-w-lg mx-auto">
             Instant ballpark estimate. Exact quote confirmed after on-site measurement.
           </p>
           <p className="text-xs text-muted-foreground/70 mt-2">
@@ -143,13 +143,13 @@ export default function EstimateCalculator() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="flex flex-col lg:flex-row gap-10 lg:gap-16"
+          className="flex flex-col lg:flex-row gap-8 lg:gap-16"
         >
           {/* Controls */}
-          <div className="flex-1 space-y-7">
+          <div className="flex-1 space-y-6 md:space-y-7">
             {/* Fence Length */}
             <div>
-              <label className="text-sm font-semibold text-foreground block mb-4">
+              <label className="text-xs md:text-sm font-semibold text-foreground block mb-3 md:mb-4">
                 Fence Length (linear feet)
               </label>
               <input
@@ -161,13 +161,13 @@ export default function EstimateCalculator() {
                 onChange={(e) => setLength(parseInt(e.target.value))}
                 className="w-full h-1.5 bg-border rounded-full appearance-none cursor-pointer accent-accent [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-accent [&::-webkit-slider-thumb]:shadow-md [&::-webkit-slider-thumb]:cursor-pointer"
               />
-              <p className="text-center text-3xl font-bold text-foreground tabular-nums mt-4 tracking-tight">
+              <p className="text-center text-2xl md:text-3xl font-bold text-foreground tabular-nums mt-3 md:mt-4 tracking-tight">
                 {length} ft
               </p>
             </div>
 
-            {/* Fence Type & Gates - side by side on desktop */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            {/* Fence Type & Gates */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5">
               <SelectDropdown
                 label="Fence Type"
                 value={fenceType}
@@ -194,30 +194,30 @@ export default function EstimateCalculator() {
 
           {/* Price card */}
           <div className="w-full lg:w-[380px] flex-shrink-0">
-            <div className="rounded-2xl border border-border/60 bg-card p-7 md:p-8 lg:sticky lg:top-24 shadow-sm">
-              <p className="text-xs font-semibold uppercase tracking-[0.15em] text-muted-foreground mb-3">
+            <div className="rounded-2xl border border-border/60 bg-card p-6 md:p-7 lg:p-8 lg:sticky lg:top-24 shadow-sm">
+              <p className="text-xs font-semibold uppercase tracking-[0.15em] text-muted-foreground mb-2 md:mb-3">
                 Estimated Price Range
               </p>
-              <p className="text-4xl md:text-[2.75rem] font-black text-accent tabular-nums tracking-tight leading-tight">
+              <p className="text-3xl md:text-4xl lg:text-[2.75rem] font-black text-accent tabular-nums tracking-tight leading-tight">
                 ${lowEstimate.toLocaleString()}&thinsp;–&thinsp;${highEstimate.toLocaleString()}
               </p>
-              <p className="text-xs text-muted-foreground mt-3 leading-relaxed">
+              <p className="text-[11px] md:text-xs text-muted-foreground mt-2 md:mt-3 leading-relaxed">
                 *Approximate. Final pricing based on on-site measurement.
               </p>
-              <p className="text-sm font-semibold text-accent mt-5">
+              <p className="text-xs md:text-sm font-semibold text-accent mt-4 md:mt-5">
                 Flexible payment options available
               </p>
 
-              <hr className="border-border my-6" />
+              <hr className="border-border my-5 md:my-6" />
 
-              <p className="font-bold text-foreground text-lg mb-5">Get Your Exact Quote</p>
+              <p className="font-bold text-foreground text-base md:text-lg mb-4 md:mb-5">Get Your Exact Quote</p>
               <a
                 href="tel:8166232363"
-                className="flex items-center justify-center bg-accent text-accent-foreground w-full py-4 rounded-full text-sm font-bold tracking-wide hover:brightness-110 transition-all shadow-md"
+                className="flex items-center justify-center bg-accent text-accent-foreground w-full py-3.5 md:py-4 rounded-full text-sm font-bold tracking-wide hover:brightness-110 transition-all shadow-md"
               >
                 Call Now — (816) 623-2363
               </a>
-              <p className="text-xs text-muted-foreground text-center mt-3">
+              <p className="text-[11px] md:text-xs text-muted-foreground text-center mt-2.5 md:mt-3">
                 We'll schedule your free on-site measurement.
               </p>
             </div>
