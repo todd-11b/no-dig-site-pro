@@ -93,15 +93,30 @@ export default function HeroSection() {
       {/* Main content - centered */}
       <div className="relative z-10 flex-1 container mx-auto px-6 md:px-8 pt-32 pb-20 flex flex-col items-center justify-center text-center">
         <div className="max-w-4xl min-h-[280px] sm:min-h-[320px] md:min-h-[360px] flex items-center justify-center mb-10">
-          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-black tracking-[-0.05em] leading-[0.92] text-primary-foreground">
-            {(typed.length > 0 ? typed : [""]).map((line, i) => (
-              <span key={`${phase}-${i}`} className="block">
-                {line}
-                {i === typed.length - 1 && (
-                  <span className="inline-block w-[3px] h-[0.85em] bg-primary-foreground/80 ml-1 animate-pulse align-middle" />
-                )}
-              </span>
-            ))}
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-black tracking-[-0.05em] leading-[1.1] text-primary-foreground">
+            {(typed.length > 0 ? typed : [""]).map((line, i) => {
+              if (isPillars && lines2BoldLen[i] > 0 && line.length > lines2BoldLen[i]) {
+                const boldPart = line.slice(0, lines2BoldLen[i]);
+                const lightPart = line.slice(lines2BoldLen[i]);
+                return (
+                  <span key={`${phase}-${i}`} className="block">
+                    {boldPart}
+                    <span className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light">{lightPart}</span>
+                    {i === typed.length - 1 && (
+                      <span className="inline-block w-[3px] h-[0.85em] bg-primary-foreground/80 ml-1 animate-pulse align-middle" />
+                    )}
+                  </span>
+                );
+              }
+              return (
+                <span key={`${phase}-${i}`} className="block">
+                  {line}
+                  {i === typed.length - 1 && (
+                    <span className="inline-block w-[3px] h-[0.85em] bg-primary-foreground/80 ml-1 animate-pulse align-middle" />
+                  )}
+                </span>
+              );
+            })}
           </h1>
         </div>
 
