@@ -73,8 +73,10 @@ function useTypewriter(lines: string[], charSpeed = 45, lineDelay = 300) {
 }
 
 export default function HeroSection() {
+  const isMobile = useIsMobile();
   const [phase, setPhase] = useState<"headline" | "pillars">("headline");
-  const activeLines = phase === "headline" ? lines1 : lines2Flat;
+  const pillarLines = isMobile ? lines2Mobile : lines2Desktop;
+  const activeLines = phase === "headline" ? lines1 : pillarLines;
   const typed = useTypewriter(activeLines, 45, 300);
   const isPillars = phase === "pillars";
 
@@ -106,9 +108,10 @@ export default function HeroSection() {
         <div className="max-w-4xl min-h-[280px] sm:min-h-[320px] md:min-h-[360px] flex items-center justify-center mb-10">
           <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-black tracking-[-0.05em] leading-[1.1] text-primary-foreground">
             {(typed.length > 0 ? typed : [""]).map((line, i) => {
-              if (isPillars && lines2BoldLen[i] > 0 && line.length > lines2BoldLen[i]) {
-                const boldPart = line.slice(0, lines2BoldLen[i]);
-                const lightPart = line.slice(lines2BoldLen[i]);
+              // Desktop pillars: bold keyword + light proof on same line
+              if (isPillars && !isMobile && lines2DesktopBoldLen[i] > 0 && line.length > lines2DesktopBoldLen[i]) {
+                const boldPart = line.slice(0, lines2DesktopBoldLen[i]);
+                const lightPart = line.slice(lines2DesktopBoldLen[i]);
                 return (
                   <span key={`${phase}-${i}`} className="block">
                     {boldPart}
@@ -119,8 +122,10 @@ export default function HeroSection() {
                   </span>
                 );
               }
+              // Mobile pillars: alternate bold keyword / light proof lines
+              const isMobileProof = isPillars && isMobile && i % 2 === 1;
               return (
-                <span key={`${phase}-${i}`} className="block">
+                <span key={`${phase}-${i}`} className={`block ${isMobileProof ? "text-2xl sm:text-3xl font-light" : ""}`}>
                   {line}
                   {i === typed.length - 1 && (
                     <span className="inline-block w-[3px] h-[0.85em] bg-primary-foreground/80 ml-1 animate-pulse align-middle" />
