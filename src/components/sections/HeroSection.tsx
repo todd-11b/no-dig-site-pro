@@ -11,12 +11,14 @@ const pillars = [
 ];
 
 const lines1 = ["Stronger fences.", "No digging.", "No yard damage."];
-const lines2 = [
-  { bold: "Faster.", light: " Same-day install." },
-  { bold: "Cleaner.", light: " No torn-up yards." },
-  { bold: "Stronger.", light: " 8× the strength." },
-  { bold: "Longer.", light: " Lasts 4× longer." },
+const lines2Flat = [
+  "Faster. Same-day install.",
+  "Cleaner. No torn-up yards.",
+  "Stronger. 8× the strength.",
+  "Longer. Lasts 4× longer.",
 ];
+// Bold portion ends at first ". " + 1 char
+const lines2BoldLen = lines2Flat.map((l) => l.indexOf(". ") + 1);
 
 function useTypewriter(lines: string[], charSpeed = 45, lineDelay = 300) {
   const [displayed, setDisplayed] = useState<string[]>([]);
