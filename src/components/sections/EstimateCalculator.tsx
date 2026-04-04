@@ -157,8 +157,8 @@ export default function EstimateCalculator() {
               <input
                 type="range"
                 min="50"
-                max="500"
-                step="10"
+                max="10000"
+                step="50"
                 value={length}
                 onChange={(e) => setLength(parseInt(e.target.value))}
                 className="w-full h-1.5 bg-border rounded-full appearance-none cursor-pointer accent-accent [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-accent [&::-webkit-slider-thumb]:shadow-md [&::-webkit-slider-thumb]:cursor-pointer"
