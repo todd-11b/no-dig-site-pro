@@ -42,7 +42,10 @@ export default function ContactPage() {
           phone: formData.get("phone") as string,
           email: formData.get("email") as string,
           address: formData.get("address") as string,
-          notes: formData.get("notes") as string,
+          notes: [
+            formData.get("notes") as string,
+            hasEstimate ? `\n--- Estimate Details ---\nMaterial: ${estimateMaterial}\nLength: ${estimateLength} ft\nGates: ${estimateGate}\nDemo: ${estimateDemo}\nEstimate: ${estimateRange}` : "",
+          ].filter(Boolean).join(""),
           source: "Website Contact Form",
         },
       });
