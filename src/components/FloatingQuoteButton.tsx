@@ -24,7 +24,7 @@ export default function FloatingQuoteButton() {
           className="fixed bottom-8 right-8 z-50 hidden lg:block"
         >
           <Link
-            to="/contact"
+            to="/estimate"
             className="group inline-flex items-center gap-2 bg-accent text-accent-foreground px-6 py-3.5 rounded-full text-sm font-semibold tracking-wide shadow-lg shadow-accent/25 hover:shadow-xl hover:shadow-accent/30 hover:-translate-y-0.5 hover:brightness-110 transition-all duration-200"
           >
             Get Your Free Quote
