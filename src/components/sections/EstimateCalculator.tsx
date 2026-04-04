@@ -224,7 +224,7 @@ export default function EstimateCalculator() {
                     estimate: `$${lowEstimate.toLocaleString()}–$${highEstimate.toLocaleString()}`,
                   });
                   trackEvent("estimate_completed", {
-                    fence_type: material,
+                    fence_type: fenceType,
                     length,
                     gate,
                     demo: demoHaulOff,
