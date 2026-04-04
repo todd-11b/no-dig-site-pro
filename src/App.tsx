@@ -7,6 +7,7 @@ import Index from "./pages/Index.tsx";
 import About from "./pages/About.tsx";
 import NoDig from "./pages/NoDig.tsx";
 import FenceTypes from "./pages/FenceTypes.tsx";
+import Estimate from "./pages/Estimate.tsx";
 import Contact from "./pages/Contact.tsx";
 import ThankYou from "./pages/ThankYou.tsx";
 import NotFound from "./pages/NotFound.tsx";
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/about" element={<About />} />
           <Route path="/no-dig" element={<NoDig />} />
           <Route path="/fence-types" element={<FenceTypes />} />
+          <Route path="/estimate" element={<Estimate />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/thank-you" element={<ThankYou />} />
           <Route path="*" element={<NotFound />} />
