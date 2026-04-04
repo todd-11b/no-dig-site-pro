@@ -140,7 +140,7 @@ export default function HeroSection() {
                 <span key={`${phase}-${i}`} className={`block ${isMobileProof ? "text-xl sm:text-2xl font-light mb-2" : isMobile && isPillars ? "mt-1" : ""}`}>
                   {line}
                   {i === typed.length - 1 && (
-                    <span className="inline-block w-[3px] h-[0.85em] bg-primary-foreground/80 ml-1 animate-pulse align-middle" />
+                    <span className="inline-block w-[3px] h-[0.85em] bg-primary-foreground/80 ml-1 animate-pulse align-middle" aria-hidden="true" style={{ position: 'absolute' }} />
                   )}
                 </span>
               );
