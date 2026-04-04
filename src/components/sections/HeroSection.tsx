@@ -129,7 +129,7 @@ export default function HeroSection() {
                     {boldPart}
                     <span className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light">{lightPart}</span>
                     {i === typed.length - 1 && (
-                      <span className="inline-block w-[3px] h-[0.85em] bg-primary-foreground/80 ml-1 animate-pulse align-middle" />
+                      <span className="inline-block w-[3px] h-[0.85em] bg-primary-foreground/80 ml-1 animate-pulse align-middle" aria-hidden="true" style={{ position: 'absolute' }} />
                     )}
                   </span>
                 );
