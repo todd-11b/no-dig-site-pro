@@ -496,10 +496,10 @@ export default function BookPage() {
                     We'll send a confirmation to <strong>{form.email}</strong>. See you soon!
                   </p>
                   <Button
-                    onClick={() => navigate("/")}
+                    onClick={() => navigate("/thank-you")}
                     className="bg-accent text-accent-foreground hover:bg-accent/90"
                   >
-                    Back to Home
+                    Continue →
                   </Button>
                 </motion.div>
               )}
