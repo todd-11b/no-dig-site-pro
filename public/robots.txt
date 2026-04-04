@@ -1,12 +1,16 @@
 User-agent: Googlebot
 Allow: /
 Disallow: /estimate
+Disallow: /book
 Disallow: /thank-you
+Disallow: /financial-model
 
 User-agent: Bingbot
 Allow: /
 Disallow: /estimate
+Disallow: /book
 Disallow: /thank-you
+Disallow: /financial-model
 
 User-agent: Twitterbot
 Allow: /
@@ -17,6 +21,8 @@ Allow: /
 User-agent: *
 Allow: /
 Disallow: /estimate
+Disallow: /book
 Disallow: /thank-you
+Disallow: /financial-model
 
 Sitemap: https://abramsfence.com/sitemap.xml
