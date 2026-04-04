@@ -75,6 +75,7 @@ function useTypewriter(lines: string[], charSpeed = 45, lineDelay = 300) {
 export default function HeroSection() {
   const isMobile = useIsMobile();
   const [phase, setPhase] = useState<"headline" | "pillars">("headline");
+  const [vimeoLoaded, setVimeoLoaded] = useState(false);
   const pillarLines = isMobile ? lines2Mobile : lines2Desktop;
   const activeLines = phase === "headline" ? lines1 : pillarLines;
   const typed = useTypewriter(activeLines, 45, 300);
@@ -82,6 +83,12 @@ export default function HeroSection() {
 
   useEffect(() => {
     const timer = setTimeout(() => setPhase("pillars"), 4500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Lazy-load Vimeo after a short delay
+  useEffect(() => {
+    const timer = setTimeout(() => setVimeoLoaded(true), 1500);
     return () => clearTimeout(timer);
   }, []);
 
