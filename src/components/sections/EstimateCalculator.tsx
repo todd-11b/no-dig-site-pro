@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { trackEvent } from "@/lib/gtag";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { useNavigate } from "react-router-dom";
