@@ -7,6 +7,7 @@ import Index from "./pages/Index.tsx";
 import About from "./pages/About.tsx";
 import NoDig from "./pages/NoDig.tsx";
 import FenceTypes from "./pages/FenceTypes.tsx";
+import Estimate from "./pages/Estimate.tsx";
 import Contact from "./pages/Contact.tsx";
 import ThankYou from "./pages/ThankYou.tsx";
 import NotFound from "./pages/NotFound.tsx";
