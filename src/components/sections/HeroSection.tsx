@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -75,6 +75,7 @@ function useTypewriter(lines: string[], charSpeed = 45, lineDelay = 300) {
 export default function HeroSection() {
   const isMobile = useIsMobile();
   const [phase, setPhase] = useState<"headline" | "pillars">("headline");
+  const [vimeoLoaded, setVimeoLoaded] = useState(false);
   const pillarLines = isMobile ? lines2Mobile : lines2Desktop;
   const activeLines = phase === "headline" ? lines1 : pillarLines;
   const typed = useTypewriter(activeLines, 45, 300);
@@ -82,6 +83,12 @@ export default function HeroSection() {
 
   useEffect(() => {
     const timer = setTimeout(() => setPhase("pillars"), 4500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Lazy-load Vimeo after a short delay
+  useEffect(() => {
+    const timer = setTimeout(() => setVimeoLoaded(true), 1500);
     return () => clearTimeout(timer);
   }, []);
 
@@ -93,19 +100,24 @@ export default function HeroSection() {
           alt="Beautiful Kansas City home with fence"
           className="hidden md:block w-full h-full object-cover"
         />
-        <iframe
-          src="https://player.vimeo.com/video/846054082?autoplay=1&loop=1&muted=1&background=1"
-          className="md:hidden w-full h-full absolute inset-0"
-          style={{ transform: "scale(2)", transformOrigin: "center center" }}
-          allow="autoplay"
-          title="Fence installation video"
-        />
+        {vimeoLoaded ? (
+          <iframe
+            src="https://player.vimeo.com/video/846054082?autoplay=1&loop=1&muted=1&background=1"
+            className="md:hidden w-full h-full absolute inset-0"
+            style={{ transform: "scale(2)", transformOrigin: "center center" }}
+            allow="autoplay"
+            title="Fence installation video"
+            loading="lazy"
+          />
+        ) : (
+          <div className="md:hidden w-full h-full absolute inset-0 bg-primary" />
+        )}
         <div className="absolute inset-0 bg-primary/65" />
       </div>
 
       {/* Main content - centered */}
       <div className="relative z-10 flex-1 container mx-auto px-5 md:px-8 pt-24 md:pt-32 pb-20 flex flex-col items-center justify-center text-center">
-        <div className="max-w-4xl min-h-[240px] sm:min-h-[320px] md:min-h-[360px] flex items-center justify-center mb-8 md:mb-10">
+        <div className="max-w-4xl h-[240px] sm:h-[320px] md:h-[360px] flex items-center justify-center mb-8 md:mb-10">
           <h1 className="text-[2.5rem] sm:text-6xl md:text-7xl lg:text-[5.5rem] font-black tracking-[-0.05em] leading-[1.1] text-primary-foreground">
             {(typed.length > 0 ? typed : [""]).map((line, i) => {
               // Desktop pillars: bold keyword + light proof on same line
@@ -113,11 +125,11 @@ export default function HeroSection() {
                 const boldPart = line.slice(0, lines2DesktopBoldLen[i]);
                 const lightPart = line.slice(lines2DesktopBoldLen[i]);
                 return (
-                  <span key={`${phase}-${i}`} className="block">
+                  <span key={`${phase}-${i}`} className="block relative">
                     {boldPart}
                     <span className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light">{lightPart}</span>
                     {i === typed.length - 1 && (
-                      <span className="inline-block w-[3px] h-[0.85em] bg-primary-foreground/80 ml-1 animate-pulse align-middle" />
+                      <span className="inline-block w-[3px] h-[0.85em] bg-primary-foreground/80 ml-1 animate-pulse align-middle" aria-hidden="true" style={{ position: 'absolute' }} />
                     )}
                   </span>
                 );
@@ -125,10 +137,10 @@ export default function HeroSection() {
               // Mobile pillars: alternate bold keyword / light proof lines
               const isMobileProof = isPillars && isMobile && i % 2 === 1;
               return (
-                <span key={`${phase}-${i}`} className={`block ${isMobileProof ? "text-xl sm:text-2xl font-light mb-2" : isMobile && isPillars ? "mt-1" : ""}`}>
+                <span key={`${phase}-${i}`} className={`block relative ${isMobileProof ? "text-xl sm:text-2xl font-light mb-2" : isMobile && isPillars ? "mt-1" : ""}`}>
                   {line}
                   {i === typed.length - 1 && (
-                    <span className="inline-block w-[3px] h-[0.85em] bg-primary-foreground/80 ml-1 animate-pulse align-middle" />
+                    <span className="inline-block w-[3px] h-[0.85em] bg-primary-foreground/80 ml-1 animate-pulse align-middle" aria-hidden="true" style={{ position: 'absolute' }} />
                   )}
                 </span>
               );

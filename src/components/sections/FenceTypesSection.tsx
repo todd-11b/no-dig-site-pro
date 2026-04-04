@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import fenceWood from "@/assets/fence-wood.jpg";
 import fenceShadowbox from "@/assets/fence-shadowbox.jpg";
 import fenceHorizontal from "@/assets/fence-horizontal.jpg";
-import fenceStained from "@/assets/fence-stained.png";
+import fenceStained from "@/assets/fence-stained.webp";
 import fenceVinyl from "@/assets/fence-vinyl.jpg";
 import fenceAluminum from "@/assets/fence-aluminum.jpg";
 
