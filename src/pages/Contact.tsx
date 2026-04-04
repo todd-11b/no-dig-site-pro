@@ -13,7 +13,15 @@ import { useToast } from "@/hooks/use-toast";
 export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const { toast } = useToast();
+
+  const estimateMaterial = searchParams.get("material");
+  const estimateLength = searchParams.get("length");
+  const estimateGate = searchParams.get("gate");
+  const estimateDemo = searchParams.get("demo");
+  const estimateRange = searchParams.get("estimate");
+  const hasEstimate = !!estimateMaterial;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
