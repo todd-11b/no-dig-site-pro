@@ -125,7 +125,7 @@ export default function HeroSection() {
                 const boldPart = line.slice(0, lines2DesktopBoldLen[i]);
                 const lightPart = line.slice(lines2DesktopBoldLen[i]);
                 return (
-                  <span key={`${phase}-${i}`} className="block">
+                  <span key={`${phase}-${i}`} className="block relative">
                     {boldPart}
                     <span className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light">{lightPart}</span>
                     {i === typed.length - 1 && (
