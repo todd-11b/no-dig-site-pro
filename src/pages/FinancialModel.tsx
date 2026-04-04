@@ -149,7 +149,9 @@ export default function FinancialModel() {
 
   // ── Render ─────────────────────────────────────────────────────────────────
   return (
-    <div className="min-h-screen bg-gray-50 p-4 max-w-3xl mx-auto">
+    <>
+      <PageMeta title="Financial Model | Abrams Fence Co." description="Internal business planning tool." noindex />
+      <div className="min-h-screen bg-gray-50 p-4 max-w-3xl mx-auto">
 
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
