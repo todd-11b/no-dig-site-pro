@@ -143,6 +143,16 @@ export default function BookPage() {
               length: estimateLength ? Number(estimateLength) : undefined,
               gate: estimateGate || undefined,
               demoHaulOff: estimateDemo === "yes",
+              ...(estimateRange && (() => {
+                const match = estimateRange.match(/\$?([\d,]+).*\$?([\d,]+)/);
+                if (match) {
+                  return {
+                    lowEstimate: Number(match[1].replace(/,/g, "")),
+                    highEstimate: Number(match[2].replace(/,/g, "")),
+                  };
+                }
+                return {};
+              })()),
             },
           }),
         },
@@ -486,10 +496,10 @@ export default function BookPage() {
                     We'll send a confirmation to <strong>{form.email}</strong>. See you soon!
                   </p>
                   <Button
-                    onClick={() => navigate("/")}
+                    onClick={() => navigate("/thank-you")}
                     className="bg-accent text-accent-foreground hover:bg-accent/90"
                   >
-                    Back to Home
+                    Continue →
                   </Button>
                 </motion.div>
               )}
