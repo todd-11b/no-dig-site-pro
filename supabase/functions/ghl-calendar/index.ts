@@ -62,6 +62,7 @@ Deno.serve(async (req) => {
       const url = new URL(`${GHL_API_URL}/calendars/${CALENDAR_ID}/free-slots`)
       url.searchParams.set('startDate', data.startDate)
       url.searchParams.set('endDate', data.endDate)
+      url.searchParams.set('timezone', data.timezone)
 
       const resp = await fetch(url.toString(), {
         headers: {
