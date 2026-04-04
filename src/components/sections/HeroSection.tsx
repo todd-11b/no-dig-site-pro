@@ -100,13 +100,18 @@ export default function HeroSection() {
           alt="Beautiful Kansas City home with fence"
           className="hidden md:block w-full h-full object-cover"
         />
-        <iframe
-          src="https://player.vimeo.com/video/846054082?autoplay=1&loop=1&muted=1&background=1"
-          className="md:hidden w-full h-full absolute inset-0"
-          style={{ transform: "scale(2)", transformOrigin: "center center" }}
-          allow="autoplay"
-          title="Fence installation video"
-        />
+        {vimeoLoaded ? (
+          <iframe
+            src="https://player.vimeo.com/video/846054082?autoplay=1&loop=1&muted=1&background=1"
+            className="md:hidden w-full h-full absolute inset-0"
+            style={{ transform: "scale(2)", transformOrigin: "center center" }}
+            allow="autoplay"
+            title="Fence installation video"
+            loading="lazy"
+          />
+        ) : (
+          <div className="md:hidden w-full h-full absolute inset-0 bg-primary" />
+        )}
         <div className="absolute inset-0 bg-primary/65" />
       </div>
 
