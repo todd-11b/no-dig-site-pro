@@ -12,6 +12,7 @@ import Book from "./pages/Book.tsx";
 import Contact from "./pages/Contact.tsx";
 import ThankYou from "./pages/ThankYou.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import FinancialModel from "./pages/FinancialModel.tsx";
 
 const queryClient = new QueryClient();
 
