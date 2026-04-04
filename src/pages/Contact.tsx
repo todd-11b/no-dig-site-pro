@@ -4,16 +4,10 @@ import Footer from "@/components/Footer";
 import MobileStickyBar from "@/components/MobileStickyBar";
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
-import { useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
-import { useNavigate, useSearchParams } from "react-router-dom";
-import { useToast } from "@/hooks/use-toast";
+import { useSearchParams } from "react-router-dom";
 
 export default function ContactPage() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const { toast } = useToast();
 
   const estimateMaterial = searchParams.get("material");
   const estimateLength = searchParams.get("length");
@@ -21,47 +15,6 @@ export default function ContactPage() {
   const estimateDemo = searchParams.get("demo");
   const estimateRange = searchParams.get("estimate");
   const hasEstimate = !!estimateMaterial;
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    const form = e.currentTarget;
-    const formData = new FormData(form);
-    const fullName = (formData.get("name") as string) || "";
-    const nameParts = fullName.trim().split(" ");
-    const firstName = nameParts[0] || "";
-    const lastName = nameParts.slice(1).join(" ");
-
-    try {
-      const { data, error } = await supabase.functions.invoke("submit-lead", {
-        body: {
-          firstName,
-          lastName,
-          phone: formData.get("phone") as string,
-          email: formData.get("email") as string,
-          address: formData.get("address") as string,
-          notes: [
-            formData.get("notes") as string,
-            hasEstimate ? `\n--- Estimate Details ---\nMaterial: ${estimateMaterial}\nLength: ${estimateLength} ft\nGates: ${estimateGate}\nDemo: ${estimateDemo}\nEstimate: ${estimateRange}` : "",
-          ].filter(Boolean).join(""),
-          source: "Website Contact Form",
-        },
-      });
-
-      if (error) throw error;
-      navigate("/thank-you");
-    } catch (err) {
-      console.error("Lead submission error:", err);
-      toast({
-        title: "Something went wrong",
-        description: "Please try again or call us at (816) 623-2363.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
 
   return (
     <>
@@ -78,9 +31,21 @@ export default function ContactPage() {
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
                 <span className="text-cta text-accent mb-4 block">Contact</span>
                 <h1 className="text-display text-primary mb-6">Get Your Free Fence Quote</h1>
-                <p className="text-body mb-10">
-                  Fill out the form and we'll get back to you within 24 hours with a detailed quote. No obligation. No pressure.
+                <p className="text-body mb-6">
+                  Pick a time that works for you and we'll give you a detailed quote. No obligation. No pressure.
                 </p>
+
+                {hasEstimate && (
+                  <div className="rounded-xl bg-accent/5 border border-accent/20 p-4 mb-8">
+                    <p className="text-xs font-semibold uppercase tracking-widest text-accent mb-2">Your Estimate</p>
+                    <p className="text-2xl font-black text-accent mb-2">{estimateRange}</p>
+                    <div className="text-xs text-muted-foreground space-y-0.5">
+                      <p>{estimateMaterial} · {estimateLength} ft</p>
+                      {estimateGate !== "None" && <p>Gates: {estimateGate}</p>}
+                      {estimateDemo === "yes" && <p>Includes demo &amp; haul-off</p>}
+                    </div>
+                  </div>
+                )}
 
                 <div className="space-y-6">
                   <a href="tel:8166232363" className="flex items-center gap-4 text-primary hover:text-accent transition-colors">
@@ -122,61 +87,20 @@ export default function ContactPage() {
                 </div>
               </motion.div>
 
-              {/* Contact Form */}
+              {/* Booking Calendar */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
-                className="card-surface p-8"
+                className="min-h-[700px]"
               >
-                <h2 className="text-xl font-bold text-primary mb-6">
-                  {hasEstimate ? "Complete Your Quote Request" : "Request Your Free Estimate"}
-                </h2>
-
-                {hasEstimate && (
-                  <div className="rounded-xl bg-accent/5 border border-accent/20 p-4 mb-6">
-                    <p className="text-xs font-semibold uppercase tracking-widest text-accent mb-2">Your Estimate</p>
-                    <p className="text-2xl font-black text-accent mb-2">{estimateRange}</p>
-                    <div className="text-xs text-muted-foreground space-y-0.5">
-                      <p>{estimateMaterial} · {estimateLength} ft</p>
-                      {estimateGate !== "None" && <p>Gates: {estimateGate}</p>}
-                      {estimateDemo === "yes" && <p>Includes demo &amp; haul-off</p>}
-                    </div>
-                  </div>
-                )}
-
-                <form className="space-y-4" onSubmit={handleSubmit}>
-                  <div>
-                    <label className="text-sm font-medium text-primary mb-1 block">Full Name</label>
-                    <input name="name" type="text" required className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:ring-2 focus:ring-accent focus:border-accent outline-none transition-all" placeholder="John Smith" />
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium text-primary mb-1 block">Phone</label>
-                    <input name="phone" type="tel" required className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:ring-2 focus:ring-accent focus:border-accent outline-none transition-all" placeholder="(816) 555-0123" />
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium text-primary mb-1 block">Email</label>
-                    <input name="email" type="email" required className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:ring-2 focus:ring-accent focus:border-accent outline-none transition-all" placeholder="john@example.com" />
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium text-primary mb-1 block">Property Address</label>
-                    <input name="address" type="text" required className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:ring-2 focus:ring-accent focus:border-accent outline-none transition-all" placeholder="123 Main St, Overland Park, KS" />
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium text-primary mb-1 block">Tell us about your project</label>
-                    <textarea name="notes" rows={3} className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:ring-2 focus:ring-accent focus:border-accent outline-none transition-all resize-none" placeholder="Fence type, length, any special requirements..." />
-                  </div>
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full bg-accent text-accent-foreground py-4 rounded-lg text-cta hover:brightness-110 transition-all shadow-lift disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    {isSubmitting ? "Submitting..." : "Get My Free Quote"}
-                  </button>
-                  <p className="text-xs text-muted-foreground text-center">
-                    Free estimate. No obligation. We'll respond within 24 hours.
-                  </p>
-                </form>
+                <iframe
+                  src="https://links.opsaiworks.com/widget/booking/GZJr7oldzXIpGnqo0klp"
+                  title="Schedule a Fence Consultation"
+                  className="w-full h-full min-h-[700px] rounded-2xl border border-border"
+                  style={{ border: "none" }}
+                  loading="lazy"
+                />
               </motion.div>
             </div>
           </div>
