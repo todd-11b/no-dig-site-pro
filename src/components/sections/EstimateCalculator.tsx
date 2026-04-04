@@ -102,6 +102,7 @@ function Toggle({
 }
 
 export default function EstimateCalculator() {
+  const navigate = useNavigate();
   const [length, setLength] = useState(150);
   const [fenceType, setFenceType] = useState("6' Treated Pine Privacy");
   const [gate, setGate] = useState("None");
