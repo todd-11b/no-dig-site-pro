@@ -130,7 +130,22 @@ export default function ContactPage() {
                 transition={{ delay: 0.1 }}
                 className="card-surface p-8"
               >
-                <h2 className="text-xl font-bold text-primary mb-6">Request Your Free Estimate</h2>
+                <h2 className="text-xl font-bold text-primary mb-6">
+                  {hasEstimate ? "Complete Your Quote Request" : "Request Your Free Estimate"}
+                </h2>
+
+                {hasEstimate && (
+                  <div className="rounded-xl bg-accent/5 border border-accent/20 p-4 mb-6">
+                    <p className="text-xs font-semibold uppercase tracking-widest text-accent mb-2">Your Estimate</p>
+                    <p className="text-2xl font-black text-accent mb-2">{estimateRange}</p>
+                    <div className="text-xs text-muted-foreground space-y-0.5">
+                      <p>{estimateMaterial} · {estimateLength} ft</p>
+                      {estimateGate !== "None" && <p>Gates: {estimateGate}</p>}
+                      {estimateDemo === "yes" && <p>Includes demo &amp; haul-off</p>}
+                    </div>
+                  </div>
+                )}
+
                 <form className="space-y-4" onSubmit={handleSubmit}>
                   <div>
                     <label className="text-sm font-medium text-primary mb-1 block">Full Name</label>
