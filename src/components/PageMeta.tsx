@@ -4,6 +4,7 @@ interface PageMetaProps {
   title: string;
   description: string;
   canonical?: string;
+  noindex?: boolean;
 }
 
 export default function PageMeta({ title, description, canonical }: PageMetaProps) {
