@@ -36,7 +36,20 @@ export default function PageMeta({ title, description, canonical, noindex }: Pag
       }
       link.setAttribute("href", canonical);
     }
-  }, [title, description, canonical]);
+
+    // Handle noindex
+    let robotsMeta = document.querySelector('meta[name="robots"]') as HTMLMetaElement | null;
+    if (noindex) {
+      if (!robotsMeta) {
+        robotsMeta = document.createElement("meta");
+        robotsMeta.setAttribute("name", "robots");
+        document.head.appendChild(robotsMeta);
+      }
+      robotsMeta.setAttribute("content", "noindex, nofollow");
+    } else if (robotsMeta) {
+      robotsMeta.remove();
+    }
+  }, [title, description, canonical, noindex]);
 
   return null;
 }

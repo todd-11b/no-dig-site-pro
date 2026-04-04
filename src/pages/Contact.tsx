@@ -2,7 +2,6 @@ import PageMeta from "@/components/PageMeta";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import MobileStickyBar from "@/components/MobileStickyBar";
-import EstimateCalculator from "@/components/sections/EstimateCalculator";
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { useState } from "react";
@@ -80,7 +79,7 @@ export default function ContactPage() {
                 <span className="text-cta text-accent mb-4 block">Contact</span>
                 <h1 className="text-display text-primary mb-6">Get Your Free Fence Quote</h1>
                 <p className="text-body mb-10">
-                  Use our instant calculator below or call us directly. No obligation. No pressure. Just a clear, honest estimate.
+                  Fill out the form and we'll get back to you within 24 hours with a detailed quote. No obligation. No pressure.
                 </p>
 
                 <div className="space-y-6">
@@ -182,8 +181,6 @@ export default function ContactPage() {
             </div>
           </div>
         </section>
-
-        <EstimateCalculator />
       </main>
       <Footer />
       <MobileStickyBar />
