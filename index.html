@@ -9,6 +9,14 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-1NF1BMTECG');
+      // Track all tel: link clicks as phone_call events
+      document.addEventListener('click', function(e) {
+        var el = e.target;
+        while (el && el.tagName !== 'A') el = el.parentElement;
+        if (el && el.href && el.href.indexOf('tel:') === 0) {
+          gtag('event', 'phone_call', { phone_number: el.href.replace('tel:', '') });
+        }
+      });
     </script>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">

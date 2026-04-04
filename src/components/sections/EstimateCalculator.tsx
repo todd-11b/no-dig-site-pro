@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { trackEvent } from "@/lib/gtag";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -221,6 +222,14 @@ export default function EstimateCalculator() {
                     gate,
                     demo: demoHaulOff ? "yes" : "no",
                     estimate: `$${lowEstimate.toLocaleString()}–$${highEstimate.toLocaleString()}`,
+                  });
+                  trackEvent("estimate_completed", {
+                    fence_type: fenceType,
+                    length,
+                    gate,
+                    demo: demoHaulOff,
+                    estimate_low: lowEstimate,
+                    estimate_high: highEstimate,
                   });
                   navigate(`/book?${params.toString()}`);
                 }}
