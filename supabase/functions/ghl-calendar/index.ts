@@ -11,6 +11,7 @@ const GetSlotsSchema = z.object({
   action: z.literal('get-slots'),
   startDate: z.string().min(1),
   endDate: z.string().min(1),
+  timezone: z.string().optional().default('America/Chicago'),
 })
 
 const BookSchema = z.object({
