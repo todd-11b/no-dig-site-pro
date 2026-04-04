@@ -80,12 +80,12 @@ export default function BookPage() {
     setSlots([]);
     setSelectedSlot(null);
 
-    const startDate = selectedDate.toISOString();
-    const endDate = addDays(selectedDate, 1).toISOString();
+    const startDate = String(selectedDate.getTime());
+    const endDate = String(addDays(selectedDate, 1).getTime());
 
     supabase.functions
       .invoke("ghl-calendar", {
-        body: { action: "get-slots", startDate, endDate },
+        body: { action: "get-slots", startDate, endDate, timezone: "America/Chicago" },
       })
       .then(({ data, error }) => {
         if (error) {
