@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { X, Check } from "lucide-react";
-import traditionalPost from "@/assets/traditional-post-cross-section.png";
-import steelcorePost from "@/assets/steelcore-post-cross-section.png";
+import traditionalPost from "@/assets/traditional-post-cross-section.webp";
+import steelcorePost from "@/assets/steelcore-post-cross-section.webp";
 
 export default function HiddenProblemSection() {
   return (
