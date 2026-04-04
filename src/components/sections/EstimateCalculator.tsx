@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const fenceTypes = [
   "6' Treated Pine Privacy",
@@ -101,6 +102,7 @@ function Toggle({
 }
 
 export default function EstimateCalculator() {
+  const navigate = useNavigate();
   const [length, setLength] = useState(150);
   const [fenceType, setFenceType] = useState("6' Treated Pine Privacy");
   const [gate, setGate] = useState("None");
@@ -211,14 +213,23 @@ export default function EstimateCalculator() {
               <hr className="border-border my-5 md:my-6" />
 
               <p className="font-bold text-foreground text-base md:text-lg mb-4 md:mb-5">Get Your Exact Quote</p>
-              <a
-                href="tel:8166232363"
+              <button
+                onClick={() => {
+                  const params = new URLSearchParams({
+                    material: fenceType,
+                    length: String(length),
+                    gate,
+                    demo: demoHaulOff ? "yes" : "no",
+                    estimate: `$${lowEstimate.toLocaleString()}–$${highEstimate.toLocaleString()}`,
+                  });
+                  navigate(`/contact?${params.toString()}`);
+                }}
                 className="flex items-center justify-center bg-accent text-accent-foreground w-full py-3.5 md:py-4 rounded-full text-sm font-bold tracking-wide hover:brightness-110 transition-all shadow-md"
               >
-                Call Now — (816) 623-2363
-              </a>
+                Get My Free Quote →
+              </button>
               <p className="text-[11px] md:text-xs text-muted-foreground text-center mt-2.5 md:mt-3">
-                We'll schedule your free on-site measurement.
+                No obligation. We'll respond within 24 hours.
               </p>
             </div>
           </div>
