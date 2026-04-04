@@ -143,6 +143,16 @@ export default function BookPage() {
               length: estimateLength ? Number(estimateLength) : undefined,
               gate: estimateGate || undefined,
               demoHaulOff: estimateDemo === "yes",
+              ...(estimateRange && (() => {
+                const match = estimateRange.match(/\$?([\d,]+).*\$?([\d,]+)/);
+                if (match) {
+                  return {
+                    lowEstimate: Number(match[1].replace(/,/g, "")),
+                    highEstimate: Number(match[2].replace(/,/g, "")),
+                  };
+                }
+                return {};
+              })()),
             },
           }),
         },
