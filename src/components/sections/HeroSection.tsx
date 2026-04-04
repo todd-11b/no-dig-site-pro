@@ -143,7 +143,7 @@ export default function HeroSection() {
           className="flex flex-col sm:flex-row items-center gap-3 md:gap-4 w-full sm:w-auto"
         >
           <Link
-            to="/contact"
+            to="/estimate"
             className="w-full sm:w-auto bg-accent text-accent-foreground px-8 md:px-10 py-4 rounded-full text-sm font-semibold tracking-wide hover:brightness-110 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 text-center"
           >
             Get Your Free Quote
