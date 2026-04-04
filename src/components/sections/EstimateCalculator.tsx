@@ -222,7 +222,7 @@ export default function EstimateCalculator() {
                     demo: demoHaulOff ? "yes" : "no",
                     estimate: `$${lowEstimate.toLocaleString()}–$${highEstimate.toLocaleString()}`,
                   });
-                  navigate(`/contact?${params.toString()}`);
+                  navigate(`/book?${params.toString()}`);
                 }}
                 className="flex items-center justify-center bg-accent text-accent-foreground w-full py-3.5 md:py-4 rounded-full text-sm font-bold tracking-wide hover:brightness-110 transition-all shadow-md"
               >
