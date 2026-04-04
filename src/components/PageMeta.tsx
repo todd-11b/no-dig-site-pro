@@ -7,7 +7,7 @@ interface PageMetaProps {
   noindex?: boolean;
 }
 
-export default function PageMeta({ title, description, canonical }: PageMetaProps) {
+export default function PageMeta({ title, description, canonical, noindex }: PageMetaProps) {
   useEffect(() => {
     document.title = title;
 
