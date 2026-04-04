@@ -117,7 +117,7 @@ export default function HeroSection() {
 
       {/* Main content - centered */}
       <div className="relative z-10 flex-1 container mx-auto px-5 md:px-8 pt-24 md:pt-32 pb-20 flex flex-col items-center justify-center text-center">
-        <div className="max-w-4xl min-h-[240px] sm:min-h-[320px] md:min-h-[360px] flex items-center justify-center mb-8 md:mb-10">
+        <div className="max-w-4xl h-[240px] sm:h-[320px] md:h-[360px] flex items-center justify-center mb-8 md:mb-10">
           <h1 className="text-[2.5rem] sm:text-6xl md:text-7xl lg:text-[5.5rem] font-black tracking-[-0.05em] leading-[1.1] text-primary-foreground">
             {(typed.length > 0 ? typed : [""]).map((line, i) => {
               // Desktop pillars: bold keyword + light proof on same line
