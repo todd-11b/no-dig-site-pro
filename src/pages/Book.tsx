@@ -12,6 +12,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, CalendarDays, Clock, Loader2, CheckCircle2 } from "lucide-react";
 import { toast } from "sonner";
+import { trackEvent } from "@/lib/gtag";
 
 type Step = "date" | "time" | "details" | "confirm";
 
