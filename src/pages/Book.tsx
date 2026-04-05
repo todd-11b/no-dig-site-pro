@@ -163,6 +163,10 @@ export default function BookPage() {
         throw new Error(data?.error || "Booking failed");
       }
 
+      trackEvent("generate_lead", { method: "booking_calendar", source: "Website - Booking Calendar" });
+      if (typeof window !== "undefined" && (window as any).fbq) {
+        (window as any).fbq("track", "Schedule", { content_name: "Fence Consultation" });
+      }
       setStep("confirm");
     } catch (err: any) {
       console.error("Booking error:", err);
