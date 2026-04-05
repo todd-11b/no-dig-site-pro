@@ -8,6 +8,7 @@ import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
+import { trackEvent } from "@/lib/gtag";
 
 export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -50,6 +51,10 @@ export default function ContactPage() {
       });
 
       if (error) throw error;
+      trackEvent("generate_lead", { method: "contact_form", source: "Website Contact Form" });
+      if (typeof window !== "undefined" && (window as any).fbq) {
+        (window as any).fbq("track", "Lead", { content_name: "Contact Form" });
+      }
       navigate("/thank-you");
     } catch (err) {
       console.error("Lead submission error:", err);

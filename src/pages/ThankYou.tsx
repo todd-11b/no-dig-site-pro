@@ -1,11 +1,19 @@
+import { useEffect } from "react";
 import PageMeta from "@/components/PageMeta";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 import { CheckCircle, Phone, Star, Clock, CalendarCheck, FileText } from "lucide-react";
 import { Link } from "react-router-dom";
+import { trackEvent } from "@/lib/gtag";
 
 export default function ThankYouPage() {
+  useEffect(() => {
+    trackEvent("lead_booked", { page: "/thank-you" });
+    if (typeof window !== "undefined" && (window as any).fbq) {
+      (window as any).fbq("track", "Contact", { content_name: "Thank You Page" });
+    }
+  }, []);
   return (
     <>
       <PageMeta

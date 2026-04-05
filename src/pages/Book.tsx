@@ -12,6 +12,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, CalendarDays, Clock, Loader2, CheckCircle2 } from "lucide-react";
 import { toast } from "sonner";
+import { trackEvent } from "@/lib/gtag";
 
 type Step = "date" | "time" | "details" | "confirm";
 
@@ -162,6 +163,10 @@ export default function BookPage() {
         throw new Error(data?.error || "Booking failed");
       }
 
+      trackEvent("generate_lead", { method: "booking_calendar", source: "Website - Booking Calendar" });
+      if (typeof window !== "undefined" && (window as any).fbq) {
+        (window as any).fbq("track", "Schedule", { content_name: "Fence Consultation" });
+      }
       setStep("confirm");
     } catch (err: any) {
       console.error("Booking error:", err);
