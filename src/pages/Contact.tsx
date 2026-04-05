@@ -8,6 +8,7 @@ import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
+import { trackEvent } from "@/lib/gtag";
 
 export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
