@@ -1,8 +1,9 @@
+import React from "react";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 
-const faqs = [
+const faqs: { q: string; a: string | React.ReactNode }[] = [
   {
     q: "How long does fence installation take?",
     a: "Most residential fences are installed in 1–2 days. The SteelCore™ system is faster than traditional methods since there's no digging or concrete curing time.",
@@ -17,7 +18,7 @@ const faqs = [
   },
   {
     q: "How does your pricing compare to other fence companies?",
-    a: "Many companies use cheaper methods — digging traditional holes with heavy equipment that tears up yards, leaving mud piles and inconsistent posts. Our No-Dig method and Clean Site Guarantee eliminate the mess, yard repairs, and long-term post failure. Not sure what to look for? Download our guide: How to Evaluate Your Fence Contractor.",
+    a: <>Many companies use cheaper methods — digging traditional holes with heavy equipment that tears up yards, leaving mud piles and inconsistent posts. Our No-Dig method and Clean Site Guarantee eliminate the mess, yard repairs, and long-term post failure. Not sure what to look for? <a href="/How-to-Evaluate-Your-Fence-Contractor.pdf" target="_blank" rel="noopener noreferrer" className="text-accent underline hover:brightness-110">Download our guide: How to Evaluate Your Fence Contractor →</a></>,
   },
   {
     q: "Do you handle HOA approvals?",

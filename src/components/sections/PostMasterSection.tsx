@@ -2,13 +2,14 @@ import { motion } from "framer-motion";
 import { Shield, Check } from "lucide-react";
 
 const specs = [
-  "Structural steel with galvanized zinc coating — rust-resistant",
-  "Withstands winds of 70+ MPH (ASCE 7-10 certified up to 112 MPH)",
+  "2⅜\" Schedule 40 steel pipe — ASTM A53 Grade B",
+  "8 ft total length: 4 ft driven below grade, 4 ft above",
+  "Yield strength: 241 MPa (35,000 psi) — 6× stronger than wood",
+  "Wall thickness: 0.154\" — built to last decades underground",
+  "Galvanized coating resists rust and corrosion",
   "Won't warp, crack, twist, rot, or lean",
-  "344 MPa (50,000 psi) yield strength — ASTM A-653",
-  "Lifetime Limited Warranty from Master Halco (50+ years in the fence industry)",
-  "Made from recycled steel — environmentally friendly",
   "No termite damage. No rot. No chemical leaching.",
+  "Made from recycled steel — environmentally friendly",
 ];
 
 export default function PostMasterSection() {
@@ -21,18 +22,18 @@ export default function PostMasterSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <span className="text-cta text-accent mb-4 block">PostMaster+® Steel Posts</span>
+            <span className="text-cta text-accent mb-4 block">SteelCore™ Driven Steel Posts</span>
             <h2 className="text-section-heading mb-6">
               Give Your Fence the Strength of Steel (While Looking Like Wood)
             </h2>
             <p className="text-body mb-6">
-              When you use PostMaster+® wood fencing, you get the perfect combination of appearance and durability. A clean, pristine wood appearance with the strength of structural steel underneath.
+              Our SteelCore™ system uses heavy-duty Schedule 40 steel pipe, pneumatically driven 4 feet into undisturbed soil. The result: a rock-solid foundation that won't shift, rot, or fail — covered by your fence for a clean, seamless look on both sides.
             </p>
             <p className="text-body mb-6">
-              The engineered design makes the posts easily covered, providing a truly good neighbor fence — no ugly side, because the post is invisible on both sides.
+              The driven pipe sits invisibly inside your fence, providing a truly good neighbor fence — no ugly side, because the post is hidden on both sides.
             </p>
             <p className="text-sm text-muted-foreground italic">
-              "Every wood post — treated or not — will eventually disintegrate from moisture, dry rot, or bug infestation. PostMaster+® won't. It's the one-time-and-done answer for any wood or composite fence."
+              "Every wood post — treated or not — will eventually disintegrate from moisture, dry rot, or bug infestation. Driven steel won't. It's the one-time-and-done answer for any wood or composite fence."
             </p>
           </motion.div>
 

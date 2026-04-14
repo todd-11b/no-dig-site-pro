@@ -72,7 +72,7 @@ export default function Footer() {
           <div className="flex gap-3 md:gap-4 text-[11px] md:text-xs text-background/30">
             <span>Licensed & Insured</span>
             <span>·</span>
-            <span>PostMaster+® Lifetime Warranty</span>
+            <span>SteelCore™ No-Dig System</span>
           </div>
         </div>
       </div>
