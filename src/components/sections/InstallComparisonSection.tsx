@@ -55,14 +55,14 @@ export default function InstallComparisonSection() {
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
           >
-            <div className="rounded-2xl overflow-hidden aspect-[9/16] md:aspect-[9/16] max-h-[400px] md:max-h-none">
-              <iframe
-                src="https://player.vimeo.com/video/846054082?autoplay=1&loop=1&muted=1&background=1"
-                className="w-full h-full"
-                style={{ transform: "scale(1.5)", transformOrigin: "center center" }}
-                allow="autoplay; fullscreen"
-                allowFullScreen
-                title="No yard damage after post installation"
+            <div className="rounded-2xl overflow-hidden aspect-[9/16] md:aspect-[9/16] max-h-[400px] md:max-h-none relative">
+              <video
+                src="https://videos.pexels.com/video-files/5765076/5765076-uhd_1440_2560_30fps.mp4"
+                className="w-full h-full object-cover"
+                autoPlay
+                loop
+                muted
+                playsInline
               />
             </div>
             <div className="bg-card rounded-2xl p-5 md:p-6 mt-3 md:mt-4 border-2 border-accent/20">
