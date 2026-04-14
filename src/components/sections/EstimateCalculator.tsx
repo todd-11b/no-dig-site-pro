@@ -158,14 +158,29 @@ export default function EstimateCalculator() {
               <input
                 type="range"
                 min="50"
-                max="10000"
-                step="50"
-                value={length}
+                max="500"
+                step="10"
+                value={Math.min(length, 500)}
                 onChange={(e) => setLength(parseInt(e.target.value))}
                 className="w-full h-1.5 bg-border rounded-full appearance-none cursor-pointer accent-accent [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-accent [&::-webkit-slider-thumb]:shadow-md [&::-webkit-slider-thumb]:cursor-pointer"
               />
-              <p className="text-center text-2xl md:text-3xl font-bold text-foreground tabular-nums mt-3 md:mt-4 tracking-tight">
-                {length} ft
+              <div className="flex items-center justify-center gap-3 mt-3 md:mt-4">
+                <input
+                  type="number"
+                  min="50"
+                  max="10000"
+                  step="10"
+                  value={length}
+                  onChange={(e) => {
+                    const v = parseInt(e.target.value);
+                    if (!isNaN(v) && v >= 50 && v <= 10000) setLength(v);
+                  }}
+                  className="w-24 md:w-28 text-center text-2xl md:text-3xl font-bold text-foreground tabular-nums tracking-tight bg-background border border-border rounded-xl py-1 focus:outline-none focus:ring-2 focus:ring-accent/40"
+                />
+                <span className="text-lg md:text-xl font-semibold text-muted-foreground">ft</span>
+              </div>
+              <p className="text-[11px] text-muted-foreground text-center mt-1.5">
+                Slider up to 500 ft · type up to 10,000 ft
               </p>
             </div>
 

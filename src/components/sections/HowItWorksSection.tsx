@@ -8,7 +8,7 @@ const steps = [
   },
   {
     num: "02",
-    title: "Hydraulic Drive",
+    title: "Pneumatic Drive",
     desc: "Steel posts driven deep into undisturbed soil. No digging. No concrete. No mess.",
   },
   {

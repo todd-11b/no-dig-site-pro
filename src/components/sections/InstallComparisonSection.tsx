@@ -68,7 +68,7 @@ export default function InstallComparisonSection() {
             <div className="bg-card rounded-2xl p-5 md:p-6 mt-3 md:mt-4 border-2 border-accent/20">
               <h3 className="text-base font-semibold text-foreground mb-3 md:mb-4">SteelCore™ Installation</h3>
               <ul className="space-y-2.5 md:space-y-3">
-                {["Hydraulic post driver", "Clean installation", "Minimal lawn disturbance", "No concrete mess"].map((item) => (
+                {["Pneumatic post driver", "Clean installation", "Minimal lawn disturbance", "No concrete mess"].map((item) => (
                   <li key={item} className="flex gap-2.5 text-sm text-muted-foreground">
                     <Check className="w-4 h-4 text-accent shrink-0 mt-0.5" />
                     {item}
