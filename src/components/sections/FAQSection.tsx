@@ -9,19 +9,15 @@ const faqs = [
   },
   {
     q: "What is a no-dig fence post?",
-    a: "Instead of digging holes and pouring concrete, our SteelCore™ system uses a hydraulic driver to push steel posts directly into the ground. This creates a stronger anchor through soil compression and skin friction — without disturbing your yard.",
+    a: "Instead of digging holes and pouring concrete, our SteelCore™ system uses a pneumatic driver to push steel posts directly into the ground. This creates a stronger anchor through soil compression and skin friction — without disturbing your yard.",
   },
   {
     q: "Is the SteelCore™ system really stronger than concrete?",
     a: "Yes. Steel has a yield strength of 250–420 MPa compared to wood's 41 MPa. Our driven steel posts are rated for 110+ MPH winds, while traditional wood-in-concrete posts fail at approximately 49 MPH.",
   },
   {
-    q: "The price is higher than I expected.",
-    a: "Many companies use cheaper methods, but they leave behind torn-up yards, mud piles, and inconsistent posts. We specialize in clean installation and long-term durability.",
-  },
-  {
-    q: "Another company is cheaper.",
-    a: "Many lower-priced companies still dig traditional holes and use heavy equipment that damages yards. Our No-Dig method and Clean Site Guarantee eliminate the mess and yard repairs.",
+    q: "How does your pricing compare to other fence companies?",
+    a: "Many companies use cheaper methods — digging traditional holes with heavy equipment that tears up yards, leaving mud piles and inconsistent posts. Our No-Dig method and Clean Site Guarantee eliminate the mess, yard repairs, and long-term post failure. Not sure what to look for? Download our guide: How to Evaluate Your Fence Contractor.",
   },
   {
     q: "Do you handle HOA approvals?",
