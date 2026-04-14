@@ -36,7 +36,7 @@ export default function AboutPage() {
                 That's how Abrams Fence started. Not with a business plan. With a backyard problem and a better solution.
               </p>
               <p className="text-body mb-6">
-                Our method: the SteelCore™ No-Dig Post System with PostMaster+® structural steel. 4X stronger than concrete. 110+ MPH wind rated. Lifetime warranty. And when No-Dig isn't the right method for a specific yard, we say so.
+                Our method: the SteelCore™ No-Dig Post System — Schedule 40 steel pipe, pneumatically driven 4 feet into undisturbed soil. 6× stronger than wood. 110+ MPH wind rated. And when No-Dig isn't the right method for a specific yard, we say so.
               </p>
             </motion.div>
           </div>

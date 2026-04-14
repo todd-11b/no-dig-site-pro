@@ -5,7 +5,7 @@ const rows = [
   { label: "Install Time", steel: "Same Day", trad: "3–5 Days" },
   { label: "Yard Damage", steel: "None", trad: "Significant" },
   { label: "Wind Rating", steel: "73–112 MPH", trad: "~50 MPH" },
-  { label: "Post Strength", steel: "344 MPa / 50,000 psi", trad: "41 MPa / ~6,000 psi" },
+  { label: "Post Strength", steel: "241 MPa / 35,000 psi", trad: "41 MPa / ~6,000 psi" },
   { label: "Post Lifespan", steel: "50+ Years", trad: "10–15 Years" },
   { label: "Rot Risk", steel: "Zero", trad: "Inevitable" },
   { label: "Concrete Required", steel: "None", trad: "2–3 bags per post" },
@@ -65,7 +65,7 @@ export default function ComparisonTableSection() {
           </div>
           <div className="p-4 border-t border-border">
             <p className="text-xs text-muted-foreground opacity-60">
-              Sources: PostMaster+ ASTM A-653 spec, Master Halco wind rating (ASCE 7-10), USDA Forest Products Lab, InterNACHI, KC frost line code.
+              Sources: ASTM A53 Grade B spec, ASCE 7-10 wind load standard, USDA Forest Products Lab, InterNACHI, KC frost line code.
             </p>
           </div>
         </motion.div>
