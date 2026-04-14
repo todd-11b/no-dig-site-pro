@@ -101,13 +101,14 @@ export default function HeroSection() {
           className="hidden md:block w-full h-full object-cover"
         />
         {vimeoLoaded ? (
-          <iframe
-            src="https://player.vimeo.com/video/846054082?autoplay=1&loop=1&muted=1&background=1"
-            className="md:hidden w-full h-full absolute inset-0"
+          <video
+            src="https://videos.pexels.com/video-files/5765076/5765076-uhd_1440_2560_30fps.mp4"
+            className="md:hidden w-full h-full absolute inset-0 object-cover"
             style={{ transform: "scale(2)", transformOrigin: "center center" }}
-            allow="autoplay"
-            title="Fence installation video"
-            loading="lazy"
+            autoPlay
+            loop
+            muted
+            playsInline
           />
         ) : (
           <div className="md:hidden w-full h-full absolute inset-0 bg-primary" />
