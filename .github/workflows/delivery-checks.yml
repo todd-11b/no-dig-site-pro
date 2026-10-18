@@ -1,0 +1,38 @@
+name: Delivery checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: delivery-checks-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  delivery-checks:
+    name: delivery-checks
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '24.14.0'
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
+        with:
+          bun-version: '1.4.3'
+      - name: Install committed Bun dependencies without lifecycle scripts
+        run: bun install --frozen-lockfile --ignore-scripts --no-env-file
+      - name: Verify dependency sources remain unchanged
+        run: git diff --exit-code -- package.json bun.lock bun.lockb package-lock.json
+      - name: Typecheck the application
+        run: ./node_modules/.bin/tsc --project tsconfig.app.json --noEmit
+      - name: Build the Vite website
+        run: npm run build
